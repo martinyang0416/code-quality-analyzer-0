@@ -1,23 +1,25 @@
-import sys
+n = int(input())
+digits = list(map(int, input().split()))
+allowed = set(digits)
 
-def compute_inversion(arr):
-    max_val = max(arr) if arr else 0
-    n = len(arr)
-    fenwick = [0] * (max_val + 2)
-    inv_count = 0
-    for i in reversed(range(n)):
-        x = arr[i]
-        # Query
-        idx = x - 1
-        while idx > 0:
-            inv_count += fenwick[idx]
-            idx -= idx & -idx
-        # Update
-        idx = x
-        while idx <= max_val:
-            fenwick[idx] += 1
-            idx += idx & -idx
-    return inv_count
+all_abc = []
+for a in digits:
+    for b in digits:
+        for c in digits:
+            all_abc.append(a * 100 + b * 10 + c)
 
-def main():
-    input = sys.st
+all_de = []
+for d in digits:
+    for e in digits:
+        all_de.append(d * 10 + e)
+
+solutions = 0
+
+for abc in all_abc:
+    for de in all_de:
+        d_val = de // 10
+        e_val = de % 10
+        partial1 = abc * e_val
+        if not (100 <= partial1 <= 999):
+            continue
+        i
