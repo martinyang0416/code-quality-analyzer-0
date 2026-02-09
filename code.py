@@ -1,6 +1,23 @@
-<think>
-Okay, let's see. The problem is to compute the last two digits of 5 raised to the power of n, where n can be really big, like up to 2e18. Hmm. Oh right, calculating 5^n directly isn't feasible because the number would be way too large. So I need a smart way to find the last two digits without computing the entire number.
+n = int(input())
+s = input().strip()
+q = int(input())
 
-Wait, but wait. Let's think about powers of 5. Let's compute some small examples.
+# Precompute for each character
+pre = {}
 
-5^1 is 5, last two digits 05. But the example for n=2 is 25. 5^2 is 25, so last two d
+for c in 'abcdefghijklmnopqrstuvwxyz':
+    B = []
+    for i in range(n):
+        if s[i] != c:
+            B.append(i)
+    len_b = len(B)
+    best = [0] * (n + 1)
+    for m in range(n + 1):
+        if m >= len_b:
+            best[m] = n
+        else:
+            max_len = 0
+            # Iterate through possible windows
+            for i in range(len_b - m + 1):
+                if i > 0:
+            
