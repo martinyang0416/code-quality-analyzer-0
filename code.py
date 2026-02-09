@@ -1,16 +1,22 @@
-m, n = map(int, input().split())
-k = int(input())
-grid = [input().strip() for _ in range(m)]
+import math
+import heapq
 
-prefix_j = [[0]*(n+1) for _ in range(m+1)]
-prefix_o = [[0]*(n+1) for _ in range(m+1)]
-prefix_i = [[0]*(n+1) for _ in range(m+1)]
+def generate_edges(star):
+    x, y, a_deg, r = star
+    tips = []
+    for k in range(5):
+        angle_deg = a_deg + 72 * k
+        angle_rad = math.radians(angle_deg)
+        tip_x = x + r * math.sin(angle_rad)
+        tip_y = y + r * math.cos(angle_rad)
+        tips.append((tip_x, tip_y))
+    edges = [
+        (tips[0], tips[2]),
+        (tips[2], tips[4]),
+        (tips[4], tips[1]),
+        (tips[1], tips[3]),
+        (tips[3], tips[0])
+    ]
+    return edges
 
-for i in range(1, m+1):
-    for j in range(1, n+1):
-        current = grid[i-1][j-1]
-        j_val = 1 if current == 'J' else 0
-        o_val = 1 if current == 'O' else 0
-        i_val = 1 if current == 'I' else 0
-        
-        prefix_j[i][j] = prefix_j[i-1][j] + prefix_j[
+def c
