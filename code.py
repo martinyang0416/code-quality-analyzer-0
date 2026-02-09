@@ -1,22 +1,21 @@
 def main():
     import sys
-    s = sys.stdin.readline().strip()
-    n = len(s)
-    if n == 0:
-        print(0)
-        return
-
+    s = sys.stdin.read().strip()
     target = ['b', 'e', 's', 's', 'i', 'e']
-    progress = [0] * 6
-    count = 0
-    cnt = [0] * n
+    n = len(s)
+    current_pos = 0
+    start = -1
+    events = []
 
-    for i in range(n):
-        c = s[i]
-        for j in range(5, -1, -1):
-            if j == 0:
-                if c == target[0]:
-                    progress[0] += 1
+    for i, c in enumerate(s):
+        if current_pos == 0:
+            if c == 'b':
+                start = i
+                current_pos = 1
             else:
-                if c == target[j] and progress[j-1] > 0:
-                    progress
+                continue
+        else:
+            if c == target[current_pos]:
+                current_pos += 1
+                if current_pos == 6:
+                   
