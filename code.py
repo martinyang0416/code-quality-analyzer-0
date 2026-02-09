@@ -1,15 +1,17 @@
-def checkSubarraySum(nums, k):
-    if k == 0:
-        # Check for two consecutive zeros
-        for i in range(len(nums) - 1):
-            if nums[i] == 0 and nums[i+1] == 0:
-                return True
-        return False
+def minCost(houses, cost, m, n, target):
+    INF = float('inf')
+    # Initialize DP table with infinity
+    dp = [[[INF] * (n + 1) for _ in range(target + 1)] for __ in range(m)]
+    
+    # Base case: first house
+    if houses[0] == 0:
+        for c in range(1, n + 1):
+            dp[0][1][c] = cost[0][c - 1]
     else:
-        k_abs = abs(k)
-        mod_dict = {0: -1}  # To handle the case where subarray starts from index 0
-        prefix_mod = 0
-        for i in range(len(nums)):
-            prefix_mod = (prefix_mod + nums[i]) % k_abs
-            if prefix_mod in mod_dict:
-      
+        dp[0][1][houses[0]] = 0
+    
+    # Fill DP table
+    for i in range(1, m):
+        for k_prev in range(1, target + 1):
+            for c_prev in range(1, n + 1):
+         
