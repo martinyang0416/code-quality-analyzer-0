@@ -1,21 +1,20 @@
-def numDupDigitsAtMostN(N):
-    if N < 1:
+def minDeletionSize(A):
+    n = len(A)
+    if n <= 1:
         return 0
-    digits = list(map(int, str(N)))
-    n_length = len(digits)
-    
-    sum_lesser = 0
-    for l in range(1, n_length):
-        if l == 1:
-            sum_lesser += 9
+    m = len(A[0])
+    unfixed = set(range(n - 1))
+    deletions = 0
+    for col in range(m):
+        conflict = False
+        for i in unfixed:
+            if A[i][col] > A[i+1][col]:
+                conflict = True
+                break
+        if conflict:
+            deletions += 1
         else:
-            product = 9
-            available = 9
-            for i in range(1, l):
-                product *= available
-                available -= 1
-            sum_lesser += product
-    
-    from functools import lru_cache
-    @lru_cache(maxsize=None)
-    
+            to_remove = set()
+            for i in unfixed:
+                if A[i][col] < A[i+1][col]:
+                    to_re
