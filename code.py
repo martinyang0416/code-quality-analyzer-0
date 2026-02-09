@@ -1,14 +1,22 @@
-def find_prime_pair(m):
-    # Sieve of Eratosthenes to find all primes up to m
-    sieve = [True] * (m + 1)
-    sieve[0] = sieve[1] = False
-    for i in range(2, int(m ** 0.5) + 1):
-        if sieve[i]:
-            sieve[i*i : m+1 : i] = [False] * len(sieve[i*i : m+1 : i])
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    t = int(input[0])
+    cases = input[1:t+1]
     
-    # Find the first pair (a, b) such that a + b = m and both are primes
-    for a in range(2, m // 2 + 1):
-        b = m - a
-        if sieve[a] and sieve[b]:
-            return (a, b)
-    return (None, None)  # This lin
+    for s in cases:
+        left = 0
+        a = 0
+        b = 0
+        c = 0
+        min_len = float('inf')
+        for right in range(len(s)):
+            char = s[right]
+            if char == 'a':
+                a += 1
+            elif char == 'b':
+                b += 1
+            else:
+                c += 1
+            
+            # Check if current window contains all t
