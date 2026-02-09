@@ -1,21 +1,23 @@
-import heapq
-import math
-
 def main():
-    n = int(input())
-    d, alpha_deg = map(float, input().split())
-    points = []
-    for _ in range(n):
-        x, y = map(int, input().split())
-        points.append((x, y))
-    
-    max_count = 1
-    heap = []
-    best_states = {}
-    
-    # Initialize the starting point (current=0, prev=None, distance=0, count=1)
-    start_current = 0
-    start_prev = None
-    start_dist = 0.0
-    start_count = 1
-    heapq.heappush(heap, (-start_count, start_dist, star
+    import sys
+    sys.setrecursionlimit(1 << 25)
+    N = int(input())
+    F = int(input())
+    f = list(map(int, input().split()))
+    p = list(map(int, input().split()))
+
+    def is_perfect_cube(x):
+        if x < 1:
+            return False
+        n = 1
+        while n ** 3 <= x:
+            if n ** 3 == x:
+                return True
+            n += 1
+        return False
+
+    valid_f = []
+    valid_p = []
+    for i in range(N):
+        fi = f[i]
+        if not is_perfect_cube(
