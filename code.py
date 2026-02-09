@@ -1,17 +1,19 @@
-def largestMultipleOfThree(digits):
-    digits_sorted = sorted(digits, reverse=True)
-    sum_total = sum(digits_sorted)
-    rem = sum_total % 3
+import bisect
+
+def smallestDistancePair(nums, k):
+    nums.sort()
+    n = len(nums)
+    low, high = 0, nums[-1] - nums[0]
     
-    if rem == 0:
-        if not digits_sorted:
-            return ""
-        if digits_sorted[0] == 0:
-            return "0"
-        return ''.join(map(str, digits_sorted))
-    else:
-        candidate = []
-        if rem == 1:
-            # Try to remove one mod 1 digit
-            found = -1
-            for i in range(len(digits_sorted)-1, -1, -1)
+    while low < high:
+        mid = (low + high) // 2
+        count = 0
+        for i in range(n):
+            target = nums[i] + mid
+            j = bisect.bisect_right(nums, target, i + 1, n)
+            count += j - i - 1
+        if count >= k:
+            high = mid
+        else:
+            low = mid + 1
+    return low
