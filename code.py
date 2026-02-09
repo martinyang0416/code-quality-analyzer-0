@@ -1,22 +1,21 @@
-import bisect
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    n = int(input[0])
-    a = list(map(int, input[1:n+1]))
-    
-    prefix = [0] * (n + 1)
-    for i in range(n):
+    import bisect
+    N = int(sys.stdin.readline())
+    a = list(map(int, sys.stdin.readline().split()))
+    prefix = [0] * (N + 1)
+    for i in range(N):
         prefix[i+1] = prefix[i] + a[i]
-    
+
     subarrays = []
-    for s in range(1, n+1):
-        for e in range(s, n+1):
-            val = prefix[e] - prefix[s-1]
-            subarrays.append( (s, e, val) )
-    
-    for i in range(1, n+1):
+    for start in range(N):
+        for end in range(start, N):
+            s = prefix[end+1] - prefix[start]
+            subarrays.append( (s, start, end) )
+
+    for i in range(N):
         S = []
         T = []
-        for (s, e, val) in subarray
+        for (s_val, s_start, s_end) in subarrays:
+ 
