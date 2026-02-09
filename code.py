@@ -1,18 +1,19 @@
-from typing import List
-
-class Solution:
-    def partitionDisjoint(self, A: List[int]) -> int:
-        n = len(A)
-        max_left = [0] * n
-        max_left[0] = A[0]
-        for i in range(1, n):
-            max_left[i] = max(max_left[i-1], A[i])
+def max_jumps(arr, d):
+    n = len(arr)
+    dp = [1] * n
+    indices = sorted([(arr[i], i) for i in range(n)], key=lambda x: (x[0], x[1]))
+    
+    for a, i in indices:
+        possible_js = []
         
-        min_right = [0] * n
-        min_right[-1] = A[-1]
-        for i in range(n-2, -1, -1):
-            min_right[i] = min(min_right[i+1], A[i])
-        
-        for i in range(n-1):
-            if max_left[i] <= min_right[i+1]:
-          
+        # Check left direction
+        current_max = 0
+        for x in range(1, min(d, i) + 1):
+            j = i - x
+            if j < 0:
+                break
+            if arr[j] >= arr[i]:
+                break
+            if x > 1:
+                new_element = arr[j + 1]
+                
