@@ -1,17 +1,9 @@
-def convert_to_base(n, k):
-    if n == 0:
-        return '0'
-    digits = []
-    while n > 0:
-        digits.append(str(n % k))
-        n = n // k
-    return ''.join(reversed(digits))
+n, m = map(int, input().split())
+bulbs = set()
 
-k = int(input())
+for _ in range(n):
+    parts = list(map(int, input().split()))
+    if parts[0] > 0:
+        bulbs.update(parts[1:])
 
-for i in range(1, k):
-    row = []
-    for j in range(1, k):
-        product = i * j
-        row.append(convert_to_base(product, k))
-    print(' '.join(row))
+print("YES" if len(bulbs) == m else "NO")
