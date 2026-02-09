@@ -1,24 +1,21 @@
 import sys
-from collections import defaultdict
 
-def main():
-    N = int(sys.stdin.readline())
-    counts = defaultdict(int)
-    initial_max = 0
-
-    for _ in range(N):
-        a, b = map(int, sys.stdin.readline().split())
-        k = a + b
-        counts[k] += 1
-        if k > initial_max:
-            initial_max = k
-
-    current_max = initial_max
-    k = 0
-
-    while k <= current_max:
-        cnt = counts.get(k, 0)
-        carry = cnt // 2
-        rem = cnt % 2
-        counts[k] = rem
-        i
+def find_short_phrase_start(words):
+    n = len(words)
+    for start in range(n):
+        # Check group 1: sum 5
+        g1_sum = 0
+        g1_end = start
+        while g1_end < n:
+            g1_sum += len(words[g1_end])
+            if g1_sum == 5:
+                break
+            elif g1_sum > 5:
+                g1_sum = -1
+                break
+            g1_end += 1
+        if g1_sum != 5:
+            continue
+        
+        # Check group 2: sum 7
+        g2_start = g1_end + 
