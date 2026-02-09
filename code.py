@@ -1,19 +1,17 @@
-import sys
-from sys import stdin
-from collections import defaultdict
-
-def main():
-    sys.setrecursionlimit(1 << 25)
-    n = int(stdin.readline())
-    p = list(map(int, stdin.readline().split()))  # p is 1-based element values
-
-    # Decompose into cycles
-    visited = [False] * (n + 1)
-    cycles = []
-    for i in range(1, n + 1):
-        if not visited[i]:
-            current = i
-            cycle = []
-            while not visited[current]:
-                visited[current] = True
-            
+class DSU:
+    def __init__(self, n):
+        self.parent = list(range(n + 1))  # 1-based indexing
+        self.rank = [1] * (n + 1)
+    
+    def find(self, u):
+        if self.parent[u] != u:
+            self.parent[u] = self.find(self.parent[u])
+        return self.parent[u]
+    
+    def union(self, u, v):
+        pu = self.find(u)
+        pv = self.find(v)
+        if pu == pv:
+            return False  # already in the same set
+        if self.rank[pu] > self.rank[pv]:
+            self.parent
