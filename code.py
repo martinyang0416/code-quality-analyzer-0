@@ -1,17 +1,12 @@
-n, k, p = map(int, input().split())
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
+n = int(input())
+s = input().strip()
 
-a.sort()
-b.sort()
+counts = {}
+for i in range(len(s) - 1):
+    two_gram = s[i] + s[i+1]
+    counts[two_gram] = counts.get(two_gram, 0) + 1
 
-min_time = float('inf')
+max_count = max(counts.values())
+candidates = [k for k, v in counts.items() if v == max_count]
 
-for s in range(len(b) - n + 1):
-    current_max = 0
-    for i in range(n):
-        time = abs(a[i] - b[s + i]) + abs(b[s + i] - p)
-        current_max = max(current_max, time)
-    min_time = min(min_time, current_max)
-
-print(min_time)
+print(candidates[0])
