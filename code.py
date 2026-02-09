@@ -1,24 +1,11 @@
-n = int(input())
-hero = list(map(int, input().split()))
-h0, a0, d0, s0 = hero
-enemies = []
-for _ in range(n):
-    h, a, d, s = map(int, input().split())
-    enemies.append((h, a, d, s))
+import sys
 
-# Check if any enemy cannot be killed
-for h, a, d, s in enemies:
-    delta = a0 - d
-    if delta <= 0 and h > 0:
-        print(-1)
-        exit()
+def main():
+    input = sys.stdin.read().split()
+    T = int(input[0])
+    for i in range(1, T+1):
+        N = int(input[i])
+        print(N * (N + 3) // 2)
 
-valid_enemies = []
-sum_part2 = 0
-
-for h, a, d, s in enemies:
-    delta = a0 - d
-    damage = max(a - d0, 0)
-    if damage == 0:
-        continue
-    k = (h + delta - 
+if __name__ == "__main__":
+    main()
