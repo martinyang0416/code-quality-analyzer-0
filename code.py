@@ -1,15 +1,19 @@
-def unhappyFriends(n, preferences, pairs):
-    # Create a dictionary to map each person to their partner
-    partner = {}
-    for a, b in pairs:
-        partner[a] = b
-        partner[b] = a
-    
-    # Precompute the index of each friend in the preferences list for quick lookup
-    prefs_index = [{} for _ in range(n)]
-    for i in range(n):
-        for idx, friend in enumerate(preferences[i]):
-            prefs_index[i][friend] = idx
-    
-    count = 0
-    # Check each person to see if they are 
+def canPartitionKSubsets(nums, k):
+    total = sum(nums)
+    if total % k != 0:
+        return False
+    target = total // k
+    nums.sort(reverse=True)
+    if nums and nums[0] > target:
+        return False
+    groups = [0] * k
+
+    def backtrack(index):
+        if index == len(nums):
+            return True
+        current = nums[index]
+        for i in range(k):
+            if i > 0 and groups[i] == groups[i-1]:
+                continue
+            if groups[i] + current <= target:
+          
