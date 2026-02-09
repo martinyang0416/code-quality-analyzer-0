@@ -1,4 +1,5 @@
 import sys
 
 for line in sys.stdin:
-    print("NO", flush=True)
+    print("NO")
+    sys.stdout.flush()
