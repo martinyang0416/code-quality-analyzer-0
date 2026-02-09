@@ -1,10 +1,17 @@
-def longestSubsequence(arr, difference):
-    dp = {}
-    max_len = 0
-    for num in arr:
-        prev = num - difference
-        current_length = dp.get(prev, 0) + 1
-        dp[num] = current_length
-        if current_length > max_len:
-            max_len = current_length
-    return max_len
+from typing import List
+from collections import deque
+
+class Solution:
+    def shortestPathAllKeys(self, grid: List[str]) -> int:
+        m = len(grid)
+        n = len(grid[0]) if m > 0 else 0
+        start_x, start_y = -1, -1
+        key_count = 0
+        
+        # Find the starting position and count the keys
+        for i in range(m):
+            for j in range(n):
+                cell = grid[i][j]
+                if cell == '@':
+                    start_x, start_y = i, j
+                el
