@@ -1,23 +1,26 @@
-n = int(input())
-s = input().strip()
-q = int(input())
+k, n = map(int, input().split())
+times = list(map(int, input().split()))
+times.sort()
 
-# Precompute for each character
-pre = {}
+gaps = []
+for i in range(n - 1):
+    gaps.append((times[i + 1] - times[i], i))
 
-for c in 'abcdefghijklmnopqrstuvwxyz':
-    B = []
-    for i in range(n):
-        if s[i] != c:
-            B.append(i)
-    len_b = len(B)
-    best = [0] * (n + 1)
-    for m in range(n + 1):
-        if m >= len_b:
-            best[m] = n
-        else:
-            max_len = 0
-            # Iterate through possible windows
-            for i in range(len_b - m + 1):
-                if i > 0:
-            
+gaps.sort()
+
+selected = set()
+total = 0
+count = 0
+
+for gap, idx in gaps:
+    if count >= k:
+        break
+    if idx in selected:
+        continue
+    if (idx - 1 in selected) or (idx + 1 in selected):
+        continue
+    selected.add(idx)
+    total += gap
+    count += 1
+
+print(total)
