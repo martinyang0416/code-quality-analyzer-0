@@ -1,21 +1,24 @@
+from collections import deque
+
+def rotate_right(s, N):
+    last_bit = s & 1
+    rotated = (s >> 1) | (last_bit << (N - 1))
+    return rotated
+
 def main():
     import sys
     input = sys.stdin.read().split()
     idx = 0
-    t = input[idx]
+    T = int(input[idx])
     idx += 1
-    U = int(input[idx])
+    N = int(input[idx])
     idx += 1
-    updates = []
-    for _ in range(U):
-        p = int(input[idx]) - 1  # converting to 0-based
-        c = input[idx+1]
-        updates.append((p, c))
+    for _ in range(T):
+        L_str = input[idx]
+        S_str = input[idx + 1]
         idx += 2
-
-    target = ['b', 'e', 's', 's', 'i', 'e']
-
-    def compute_A(s):
-        n = len(s)
-        # Precompute for each position the state when starting there
-        # We can store for ea
+        L = int(L_str, 2)
+        S = int(S_str, 2)
+        visited = {}
+        initial_key = (S << N) | L
+ 
