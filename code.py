@@ -1,24 +1,24 @@
 def putaway(A, B, T, X, Y, W, S):
-    # Compute max_x and max_y
-    if A > 0:
-        max_x = max(X)
+    # Compute max_X and max_Y
+    if A == 0:
+        max_X = 0
     else:
-        max_x = -1  # since W[i] >=1, so W < -1 is impossible, weak_ok is false
-    
-    if B > 0:
-        max_y = max(Y)
+        max_X = max(X)
+    if B == 0:
+        max_Y = 0
     else:
-        max_y = -1
+        max_Y = max(Y)
     
-    must_weak = 0
-    must_small = 0
-    opt = 0
-    
+    mandatory_w = 0
+    mandatory_s = 0
+    flexible = 0
+
     for i in range(T):
         w = W[i]
         s = S[i]
-        wk_ok = (w < max_x)
-        sm_ok = (s < max_y)
+        is_weak = (A > 0 and w < max_X)
+        is_small = (B > 0 and s < max_Y)
         
-        if not wk_ok and not sm_ok:
+        if not (is_weak or is_small):
             return -1
+        if is_weak and not is_smal
