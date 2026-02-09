@@ -1,18 +1,28 @@
-t = int(input())
-for _ in range(t):
-    n = int(input())
-    a = list(map(int, input().split()))
-    b = list(map(int, input().split()))
-    c = list(map(int, input().split()))
-    p = [0] * n
-    p[0] = a[0]
-    for i in range(1, n-1):
-        options = [a[i], b[i], c[i]]
-        for opt in options:
-            if opt != p[i-1]:
-                p[i] = opt
-                break
-    # Handle last element
-    i = n-1
-    options = [a[i], b[i], c[i]]
-    candidates = [x for x in options if x != p[i
+import numpy as np
+
+n = int(input())
+a = list(map(int, input().split()))
+
+if n == 1:
+    exit()
+
+bits = [0] * (n - 1)
+for d in range(1, n):
+    bits[d-1] = bin(d).count('1')
+
+a_np = np.array(a, dtype=np.float64)
+bits_np = np.array(bits, dtype=np.float64)
+
+size = 1
+while size < len(a_np) + len(bits_np) - 1:
+    size <<= 1
+
+fft_a = np.fft.fft(a_np, size)
+fft_bits = np.fft.fft(bits_np, size)
+
+fft_conv = fft_a * fft_bits
+conv = np.fft.ifft(fft_conv).real
+
+result = []
+for k in range(1, n):
+    index 
