@@ -1,19 +1,22 @@
-class Edge:
-    def __init__(self, to, rev, capacity):
-        self.to = to
-        self.rev = rev
-        self.capacity = capacity
+import sys
+MOD = 10**9 + 7
 
-def putaway(A, B, T, X, Y, W, S):
-    # Check each toy can be handled
-    for i in range(T):
-        can_weak = any(W[i] < x for x in X)
-        can_small = any(S[i] < y for y in Y)
-        if not (can_weak or can_small):
-            return -1
-
-    # Binary search parameters
-    low, high, ans = 1, T, -1
-    while low <= high:
-        mid = (low + high) // 2
-      
+def main():
+    N, M = map(int, sys.stdin.readline().split())
+    masks = []
+    for _ in range(M):
+        s = sys.stdin.readline().strip()
+        masks.append(s)
+    
+    # Create bitmask for each problem
+    problem_masks = []
+    for i in range(N):
+        bm = 0
+        for m in range(M):
+            if masks[m][i] == 'E':
+                bm |= (1 << m)
+        problem_masks.append(bm)
+    
+    # Group by masks
+    from collections import defaultdict
+    count =
