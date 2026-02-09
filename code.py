@@ -1,10 +1,10 @@
 import sys
 from collections import deque
 
-def rotate_right(s, N):
+def rotate_right(s, n):
     last_bit = s & 1
-    s = (s >> 1)
-    return s | (last_bit << (N - 1))
+    s = (s >> 1) | (last_bit << (n - 1))
+    return s
 
 def main():
     input = sys.stdin.read().split()
@@ -15,12 +15,9 @@ def main():
     idx += 1
 
     for _ in range(T):
-        L_str = input[idx]
-        S_str = input[idx+1]
+        lights_str = input[idx].strip()
+        switches_str = input[idx+1].strip()
         idx += 2
 
-        # Convert strings to integers (bitmasks)
-        L = 0
-        S = 0
-        for i in range(N):
-            bit_L = i
+        # Reverse to treat as little-endian (LSB is first character of string)
+        lights_str
