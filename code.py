@@ -1,15 +1,21 @@
 import sys
 
-def count_set_bits(n):
-    return bin(n).count('1')
-
 def main():
-    input = sys.stdin.read
-    data = input().split()
-    T = int(data[0])
-    for i in range(1, T+1):
-        D = int(data[i])
-        print(count_set_bits(D) - 1)
-
-if __name__ == "__main__":
-    main()
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr += 1
+    for _ in range(T):
+        N = int(input[ptr])
+        ptr += 1
+        arr = list(map(int, input[ptr:ptr+N]))
+        ptr += N
+        max_len = 2
+        for i in range(N-1):
+            a = arr[i]
+            b = arr[i+1]
+            current_len = 2
+            next_idx = i + 2
+            while next_idx < N:
+                expected = a + b
+                if arr[next_idx] == exp
