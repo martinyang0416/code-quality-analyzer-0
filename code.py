@@ -1,14 +1,22 @@
-n = int(input())
-if n < 3:
-    print(0)
-else:
-    degrees = [0] * (n + 1)
-    for _ in range(n - 1):
-        u, v = map(int, input().split())
-        degrees[u] += 1
-        degrees[v] += 1
-    total = n * (n - 1) * (n - 2) // 6
-    sum_edges = (n - 1) * (n - 2)
-    sum_pairs = sum(d * (d - 1) // 2 for d in degrees)
-    result = total - sum_edges + sum_pairs
-    print(max(0, result))
+x1, y1 = map(int, input().split())
+x2, y2 = map(int, input().split())
+cx, cy = map(int, input().split())
+
+def check():
+    for t in range(4):
+        if t == 0:
+            rax, ray = x1, y1
+        elif t == 1:
+            rax, ray = y1, -x1
+        elif t == 2:
+            rax, ray = -x1, -y1
+        else:
+            rax, ray = -y1, x1
+        
+        dx = x2 - rax
+        dy = y2 - ray
+        
+        if cx == 0 and cy == 0:
+            if dx == 0 and dy == 0:
+                return True
+ 
