@@ -8,15 +8,14 @@ def main():
         s = sys.stdin.readline().strip()
         masks.append(s)
     
-    # Create bitmask for each problem
     problem_masks = []
     for i in range(N):
-        bm = 0
+        current_mask = 0
         for m in range(M):
-            if masks[m][i] == 'E':
-                bm |= (1 << m)
-        problem_masks.append(bm)
+            if masks[m][i] == 'H':
+                current_mask |= 1 << m
+        problem_masks.append(current_mask)
     
-    # Group by masks
     from collections import defaultdict
-    count =
+    cnt = defaultdict(int)
+    for m in pr
