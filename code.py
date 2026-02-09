@@ -1,17 +1,18 @@
-MOD = 10**9 + 7
-
 class Solution:
-    def numWays(self, steps: int, arrLen: int) -> int:
-        max_pos = min(arrLen - 1, steps)
-        prev = [0] * (max_pos + 1)
-        prev[0] = 1
+    def minKBitFlips(self, A: List[int], K: int) -> int:
+        N = len(A)
+        diff = [0] * (N + 1)
+        current_flips = 0
+        flip_count = 0
         
-        for _ in range(steps):
-            current = [0] * (max_pos + 1)
-            for j in range(max_pos + 1):
-                current[j] = prev[j]
-                if j > 0:
-                    current[j] += prev[j - 1]
-                if j < max_pos:
-                    current[j] += prev[j + 1]
-      
+        for i in range(N):
+            current_flips += diff[i]
+            actual = A[i] ^ (current_flips % 2)
+            
+            if actual == 0:
+                if i + K > N:
+                    return -1
+                flip_count += 1
+                current_flips += 1
+                if i + K < N:
+           
