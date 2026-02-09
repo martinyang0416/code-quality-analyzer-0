@@ -1,20 +1,19 @@
-n = int(input())
-x = int(input())
+import math
 
-m = n % 6
+def count_reward_days(d):
+    S = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    n = len(S)
+    total = 0
 
-# Define the inverse permutations for each m (0 to 5)
-inverse_perms = [
-    [0, 1, 2],   # m=0
-    [2, 1, 0],   # m=1
-    [1, 2, 0],   # m=2
-    [0, 2, 1],   # m=3
-    [2, 0, 1],   # m=4
-    [1, 0, 2]    # m=5
-]
-
-# Get the inverse permutation for m steps
-inv_perm = inverse_perms[m]
-
-# The initial position is inv_perm[x]
-print(inv_perm[x])
+    for mask in range(1, 1 << n):
+        bits = bin(mask).count('1')
+        elements = []
+        for i in range(n):
+            if mask & (1 << i):
+                elements.append(S[i])
+        current_lcm = 1
+        for num in elements:
+            current_lcm = current_lcm * num // math.gcd(current_lcm, num)
+            if current_lcm > d:
+                break
+        if current_
