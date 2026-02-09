@@ -1,13 +1,18 @@
-n, x, y = map(int, input().split())
-s = input().strip()
+MOD = 10**9 + 7
 
-suffix = s[-x:]
-target = ['0'] * x
-target[x - y - 1] = '1'
+n = int(input())
 
-count = 0
-for i in range(x):
-    if suffix[i] != target[i]:
-        count += 1
-
-print(count)
+if n < 2:
+    print(0)
+else:
+    # Compute factorial(n) mod MOD
+    fact = 1
+    for i in range(2, n + 1):
+        fact = (fact * i) % MOD
+    
+    # Compute 2^(n-1) mod MOD
+    pow2 = pow(2, n - 1, MOD)
+    
+    # Calculate the result
+    result = (fact - pow2) % MOD
+    print(result)
