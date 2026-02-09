@@ -1,21 +1,20 @@
 import bisect
-import sys
-import math
 
-def main():
-    A, B, T = map(int, sys.stdin.readline().split())
-    X = list(map(int, sys.stdin.readline().split())) if A > 0 else []
-    Y = list(map(int, sys.stdin.readline().split())) if B > 0 else []
-    W = []
-    S = []
-    for _ in range(T):
-        w, s = map(int, sys.stdin.readline().split())
-        W.append(w)
-        S.append(s)
+def putaway(A, B, T, X, Y, W, S):
+    if T == 0:
+        return 0
 
-    X.sort()
-    Y.sort()
+    # Sort the X and Y arrays for efficient lookups
+    sortedX = sorted(X) if A > 0 else []
+    sortedY = sorted(Y) if B > 0 else []
 
-    count1 = 0  # must be handled by weak
-    count2 = 0  # must be handled by small
-    c
+    Ow_count = 0  # Toys that can only go to weak robots
+    Os_count = 0  # Toys that can only go to small robots
+    B_count = 0   # Toys that can go to either
+    has_impossible = False
+
+    for i in range(T):
+        w = W[i]
+        s = S[i]
+        can_weak = False
+        can
