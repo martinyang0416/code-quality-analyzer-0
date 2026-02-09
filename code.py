@@ -1,22 +1,20 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    t = int(input[0])
-    cases = input[1:t+1]
-    
-    for s in cases:
-        left = 0
-        a = 0
-        b = 0
-        c = 0
-        min_len = float('inf')
-        for right in range(len(s)):
-            char = s[right]
-            if char == 'a':
-                a += 1
-            elif char == 'b':
-                b += 1
-            else:
-                c += 1
-            
-            # Check if current window contains all t
+def minimal_array_length(test_cases):
+    for case in test_cases:
+        n, a = case
+        stack = []
+        for num in a:
+            stack.append(num)
+            while len(stack) >= 3:
+                if stack[-3] == stack[-1]:
+                    s = stack.pop()
+                    stack.pop()
+                    stack[-1] += s
+                else:
+                    break
+        print(len(stack))
+
+# Reading input
+t = int(input())
+test_cases = []
+for _ in range(t):
+    n = int(input()
