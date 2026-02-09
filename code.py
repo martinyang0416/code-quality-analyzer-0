@@ -1,17 +1,22 @@
-T = int(input())
-for _ in range(T):
-    s = input().strip()
-    n = len(s)
-    if n == 0:
-        print(0)
-        continue
-    dp = [[0] * n for _ in range(n)]
-    for i in range(n-1, -1, -1):
-        dp[i][i] = 1
-        for j in range(i+1, n):
-            if s[i] == s[j]:
-                dp[i][j] = dp[i+1][j] + dp[i][j-1] + 1
-            else:
-                subtract = dp[i+1][j-1] if (i+1 <= j-1) else 0
-                dp[i][j] = dp[i+1][j] + dp[i][j-1] - subtract
-    print(dp[0][n-1])
+# Read input and process cities and roads
+n = int(input())
+cities = input().split()
+cities_set = set(cities)
+m = int(input())
+roads = {}
+for _ in range(m):
+    c1, c2, d = input().split()
+    roads[(c1, c2)] = int(d)
+t = int(input())
+for _ in range(t):
+    parts = input().split()
+    k = int(parts[0])
+    route = parts[1:]
+    # Check all cities exist
+    valid = True
+    for city in route:
+        if city not in cities_set:
+            valid = False
+            break
+    if not valid:
+        p
