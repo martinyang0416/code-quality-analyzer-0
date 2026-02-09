@@ -1,16 +1,9 @@
-import math
-
-def nthMagicalNumber(N: int, A: int, B: int) -> int:
-    MOD = 10**9 + 7
-    g = math.gcd(A, B)
-    lcm = (A * B) // g
-    low, high = 1, N * max(A, B)
-    
-    while low < high:
-        mid = (low + high) // 2
-        count = mid // A + mid // B - mid // lcm
-        if count < N:
-            low = mid + 1
+def findPeakElement(nums):
+    left, right = 0, len(nums) - 1
+    while left < right:
+        mid = (left + right) // 2
+        if nums[mid] < nums[mid + 1]:
+            left = mid + 1
         else:
-            high = mid
-    return low % MOD
+            right = mid
+    return left
