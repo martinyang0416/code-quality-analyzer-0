@@ -1,23 +1,26 @@
+import sys
+from collections import deque
+
 def rotate_right(s, N):
     last_bit = s & 1
-    s >>= 1
-    s |= last_bit << (N - 1)
-    return s
+    s = (s >> 1)
+    return s | (last_bit << (N - 1))
 
-def solve():
-    import sys
-    from collections import deque
+def main():
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    N = int(input[idx])
+    idx += 1
 
-    T, N = map(int, sys.stdin.readline().split())
     for _ in range(T):
-        L_str, S_str = sys.stdin.readline().strip().split()
-        L0 = int(L_str, 2)
-        S0 = int(S_str, 2)
-        desired = L0
+        L_str = input[idx]
+        S_str = input[idx+1]
+        idx += 2
 
-        found = False
-        result = -1
-
-        # BFS using level by level steps
-        initial = (S0, 0)
-        visited = 
+        # Convert strings to integers (bitmasks)
+        L = 0
+        S = 0
+        for i in range(N):
+            bit_L = i
