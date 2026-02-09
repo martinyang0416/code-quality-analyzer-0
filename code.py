@@ -1,16 +1,15 @@
-def calculate(s):
+def minRemoveToMakeValid(s):
     stack = []
-    current_num = 0
-    current_operator = '+'
-    
-    for c in s:
-        if c.isdigit():
-            current_num = current_num * 10 + int(c)
-        elif c in '+-*/':
-            if current_operator == '+':
-                stack.append(current_num)
-            elif current_operator == '-':
-                stack.append(-current_num)
-            elif current_operator == '*':
-                stack.append(stack.pop() * current_num)
-            elif current_operato
+    remove = set()
+    for i, c in enumerate(s):
+        if c == '(':
+            stack.append(i)
+        elif c == ')':
+            if stack:
+                stack.pop()
+            else:
+                remove.add(i)
+    # Add remaining unmatched '(' indices to remove set
+    remove.update(stack)
+    # Build the result string
+    return ''.join([c for i, c in enumerate(s) if i not in remove])
