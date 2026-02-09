@@ -1,11 +1,20 @@
-# Read the input values
-M, N, P = map(int, input().split())
+n = int(input())
+x = int(input())
 
-# Calculate the maximum hours based on money
-hours_money = N // M
+m = n % 6
 
-# The result is the minimum of the two limits
-result = min(hours_money, P)
+# Define the inverse permutations for each m (0 to 5)
+inverse_perms = [
+    [0, 1, 2],   # m=0
+    [2, 1, 0],   # m=1
+    [1, 2, 0],   # m=2
+    [0, 2, 1],   # m=3
+    [2, 0, 1],   # m=4
+    [1, 0, 2]    # m=5
+]
 
-# Output the result
-print(result)
+# Get the inverse permutation for m steps
+inv_perm = inverse_perms[m]
+
+# The initial position is inv_perm[x]
+print(inv_perm[x])
