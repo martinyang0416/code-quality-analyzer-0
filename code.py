@@ -1,23 +1,15 @@
 import sys
 
+def count_set_bits(n):
+    return bin(n).count('1')
+
 def main():
     input = sys.stdin.read
     data = input().split()
-    idx = 0
-    T = int(data[idx])
-    idx += 1
-    for _ in range(T):
-        N, M = int(data[idx]), int(data[idx+1])
-        idx +=2
-        A = list(map(int, data[idx:idx+N]))
-        idx +=N
-        s = set(A)
-        valid = True
-        for x in range(1, M):
-            if x not in s:
-                valid = False
-                break
-        if not valid:
-            print(-1)
-            continue
-        count
+    T = int(data[0])
+    for i in range(1, T+1):
+        D = int(data[i])
+        print(count_set_bits(D) - 1)
+
+if __name__ == "__main__":
+    main()
