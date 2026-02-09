@@ -1,6 +1,3 @@
-a = int(input())
-binary = bin(a)[2:].zfill(6)
-bits = list(map(int, binary))
-output_bits = [bits[0], bits[5], bits[3], bits[2], bits[4], bits[1]]
-result = int(''.join(map(str, output_bits)), 2)
-print(result)
+Okay, let's see. The problem is to take an integer a between 1 and 30 and output another integer. The example given is input 3 outputs 27. Hmm, 3 cubed is 27. Oh right, maybe the problem is just to compute a cubed? But wait, let me think again. Let me check other possible patterns. Like, maybe it's a factorial? But 3 factorial is 6, not 27. So no. So the example fits with a^3.
+
+So the task is probably to compute a cubed. Then the output is simply a multiplied by itself three times. So for input 
