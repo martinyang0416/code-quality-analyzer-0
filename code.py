@@ -1,21 +1,17 @@
-import sys
+n, k = map(int, input().split())
+s = input().strip()
+sorted_values = sorted(ord(c) - ord('a') + 1 for c in s)
+INF = float('inf')
+dp = [[INF] * (k + 1) for _ in range(n)]
 
-def main():
-    input = sys.stdin.read().split()
-    T = int(input[0])
-    index = 1
-    for _ in range(T):
-        R = int(input[index])
-        C = int(input[index+1])
-        G = int(input[index+2])
-        index +=3
-        remaining = G
-        current_col = C
-        previous = None
-        steps = []
-        while remaining > 0 and current_col >= 0:
-            w = current_col
-            if steps:
-                max_allowed = previous
-            else:
-                max_al
+for i in range(n):
+    dp[i][1] = sorted_values[i]
+
+for j in range(2, k + 1):
+    for i in range(n):
+        for prev in range(i):
+            if sorted_values[i] - sorted_values[prev] >= 2:
+                if dp[prev][j-1] + sorted_values[i] < dp[i][j]:
+                    dp[i][j] = dp[prev][j-1] + sorted_values[i]
+
+min_total
