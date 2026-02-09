@@ -1,19 +1,17 @@
-import math
+def main():
+    s = input().strip()
+    n = len(s)
+    if n == 0:
+        print(0)
+        return
 
-def count_reward_days(d):
-    S = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-    n = len(S)
-    total = 0
+    # Define direction deltas: north, east, south, west
+    direction_deltas = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
-    for mask in range(1, 1 << n):
-        bits = bin(mask).count('1')
-        elements = []
-        for i in range(n):
-            if mask & (1 << i):
-                elements.append(S[i])
-        current_lcm = 1
-        for num in elements:
-            current_lcm = current_lcm * num // math.gcd(current_lcm, num)
-            if current_lcm > d:
-                break
-        if current_
+    # Precompute suffix dx, dy, and final direction for each position and starting direction
+    suffix_dx = [[0]*4 for _ in range(n+1)]
+    suffix_dy = [[0]*4 for _ in range(n+1)]
+    suffix_dir = [[0]*4 for _ in range(n+1)]
+
+    # Initialize for i = n (no commands)
+    for d in range
