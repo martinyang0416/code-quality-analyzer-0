@@ -1,19 +1,18 @@
 import sys
-from collections import defaultdict
 
 def main():
-    t = int(sys.stdin.readline())
-    for _ in range(t):
-        n = int(sys.stdin.readline())
-        a = list(map(int, sys.stdin.readline().split()))
-        d = defaultdict(set)
-        found = False
-        for x in a:
-            mapped_val = a[x-1]
-            d[mapped_val].add(x)
-            if len(d[mapped_val]) >= 2:
-                found = True
-                break
-        print("Truly Happy" if found else "Poor Chef")
+    input = sys.stdin.read
+    data = input().split()
+    T = int(data[0])
+    index = 1
+    for _ in range(T):
+        P1 = int(data[index])
+        P2 = int(data[index+1])
+        K = int(data[index+2])
+        index +=3
+        total = P1 + P2
+        quo = total // K
+        print("CHEF" if quo % 2 == 0 else "COOK")
 
-if __
+if __name__ == "__main__":
+    main()
