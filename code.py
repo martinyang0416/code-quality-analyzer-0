@@ -1,18 +1,20 @@
-class DSU:
-    def __init__(self, size):
-        self.parent = list(range(size))
-        self.rank = [0] * size
-
-    def find(self, x):
-        if self.parent[x] != x:
-            self.parent[x] = self.find(self.parent[x])
-        return self.parent[x]
-
-    def union(self, x, y):
-        x_root = self.find(x)
-        y_root = self.find(y)
-
-        if x_root == y_root:
-            return False  # no union performed
-        if self.rank[x_root] < self.rank[y_root]:
-            self.parent[x_root] 
+def main():
+    import sys
+    n = int(sys.stdin.readline())
+    adj = [[] for _ in range(n + 1)]
+    for _ in range(n):
+        a, b = map(int, sys.stdin.readline().split())
+        adj[a].append(b)
+        adj[b].append(a)
+    
+    # Check if each node has exactly two neighbors
+    for i in range(1, n + 1):
+        if len(adj[i]) != 2:
+            print(-1)
+            return
+    
+    sequence = [1]
+    current = 1
+    prev = -1  # Indicates no previous node at the start
+    
+    for _ in rang
