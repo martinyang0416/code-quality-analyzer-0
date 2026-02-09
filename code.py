@@ -1,24 +1,19 @@
 import sys
 
-MOD = 10**9 + 7
-
 def main():
-    data = sys.stdin.read().split()
+    input = sys.stdin.read().split()
     ptr = 0
-    T = int(data[ptr])
+    T = int(input[ptr])
     ptr += 1
-    results = []
     for _ in range(T):
-        d = int(data[ptr])
-        ptr += 1
-        L = int(data[ptr])
-        R = int(data[ptr+1])
+        N, K = map(int, input[ptr:ptr+2])
         ptr += 2
+        A = list(map(int, input[ptr:ptr+N]))
+        ptr += N
         
-        # Calculate start_odd and end_odd
-        start_odd = L if L % 2 == 1 else L + 1
-        end_odd = R if R % 2 == 1 else R - 1
-        
-        # Compute N
-        N = ((end_odd - start_odd) // 2) + 1
- 
+        # Compute max_single using Kadane's algorithm
+        max_current = max_global = A[0]
+        for num in A[1:]:
+            max_current = max(num, max_current + num)
+            max_global = max(max_global, max_current)
+        m
