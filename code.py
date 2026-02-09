@@ -1,19 +1,17 @@
-from collections import deque
-
-def racecar(target):
-    queue = deque([(0, 1, 0)])
-    visited = set([(0, 1)])
+def largestMultipleOfThree(digits):
+    digits_sorted = sorted(digits, reverse=True)
+    sum_total = sum(digits_sorted)
+    rem = sum_total % 3
     
-    while queue:
-        pos, speed, steps = queue.popleft()
-        
-        if pos == target:
-            return steps
-        
-        # Action A: Accelerate
-        new_pos = pos + speed
-        new_speed = speed * 2
-        if (new_pos, new_speed) not in visited:
-            # Prune positions that are too far from the target
-            if abs(new_pos) <= 2 * target:
-         
+    if rem == 0:
+        if not digits_sorted:
+            return ""
+        if digits_sorted[0] == 0:
+            return "0"
+        return ''.join(map(str, digits_sorted))
+    else:
+        candidate = []
+        if rem == 1:
+            # Try to remove one mod 1 digit
+            found = -1
+            for i in range(len(digits_sorted)-1, -1, -1)
