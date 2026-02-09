@@ -1,22 +1,22 @@
-x1, y1 = map(int, input().split())
-x2, y2 = map(int, input().split())
-cx, cy = map(int, input().split())
+from collections import deque
 
-def check():
-    for t in range(4):
-        if t == 0:
-            rax, ray = x1, y1
-        elif t == 1:
-            rax, ray = y1, -x1
-        elif t == 2:
-            rax, ray = -x1, -y1
-        else:
-            rax, ray = -y1, x1
-        
-        dx = x2 - rax
-        dy = y2 - ray
-        
-        if cx == 0 and cy == 0:
-            if dx == 0 and dy == 0:
-                return True
- 
+n, m = map(int, input().split())
+p = list(map(int, input().split()))
+target = p[-1]
+
+# Build reversed adjacency list
+adj_reversed = [[] for _ in range(n + 1)]
+for _ in range(m):
+    u, v = map(int, input().split())
+    adj_reversed[v].append(u)
+
+# BFS to find reachable nodes in reversed graph
+reachable = [False] * (n + 1)
+q = deque([target])
+reachable[target] = True
+
+while q:
+    u = q.popleft()
+    for v in adj_reversed[u]:
+        if not reachable[v]:
+           
