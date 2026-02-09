@@ -1,19 +1,18 @@
-import sys
-from collections import defaultdict
+n = int(input())
+m = 2 * n - 2
+total = 0
 
-def precompute_spf(max_num):
-    spf = list(range(max_num + 1))  # Initialize each number as its own spf
-    for i in range(2, int(max_num**0.5) + 1):
-        if spf[i] == i:  # i is a prime
-            for j in range(i * i, max_num + 1, i):
-                if spf[j] == j:
-                    spf[j] = i
-    return spf
-
-max_a = 200000
-spf = precompute_spf(max_a)
-
-t = int(sys.stdin.readline())
-for _ in range(t):
-    n = int(sys.stdin.readline())
+for i in range(m - n + 1):
+    # Calculate the number of edges
+    edges = 0
+    if i > 0:
+        edges += 1
+    if i + n < m:
+        edges += 1
     
+    # Calculate the number of remaining lamps
+    remaining = m - n - edges
+    ways = 4 * (3 ** edges) * (4 ** remaining)
+    total += ways
+
+print(total)
