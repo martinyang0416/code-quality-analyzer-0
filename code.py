@@ -1,23 +1,19 @@
+import sys
+
 def main():
-    import sys
     N, M = map(int, sys.stdin.readline().split())
     
-    # Calculate the number of set bits (minimum terms)
-    K = bin(N).count('1')
+    max_a = int(N ** 0.5)
+    squares = [a * a for a in range(0, max_a + 1)]
     
-    if M < K:
-        print("NO")
-        return
+    dp = [[False] * (M + 1) for _ in range(N + 1)]
+    dp[0][0] = True
     
-    # Calculate the maximum possible terms by splitting each set bit completely.
-    max_terms = 0
-    temp = N
-    exp = 0
-    while temp > 0:
-        if temp & 1:
-            max_terms += 2 ** exp
-        exp += 1
-        temp >>= 1
-    
-    if M <= max_terms:
-        print("
+    for i in range(1, N + 1):
+        for k in range(1, M + 1):
+            for s in squares:
+                if s > i:
+                    continue
+                prev_i = i - s
+                prev_k = k - 1
+                if prev_k >= 0 and dp[prev_i][prev_k
