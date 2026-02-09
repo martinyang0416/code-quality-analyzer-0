@@ -1,16 +1,28 @@
-import bisect
+import sys
+sys.setrecursionlimit(1 << 25)
+MOD = 10**9 + 7
 
-n = int(input())
-t = list(map(int, input().split()))
-t.sort()
-max_len = 0
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    N = int(data[idx])
+    idx +=1
+    M = int(data[idx])
+    idx +=1
 
-for i in range(n):
-    a = t[i]
-    b = a + 2
-    j = bisect.bisect_right(t, b)
-    current_len = j - i
-    if current_len > max_len:
-        max_len = current_len
+    edges = []
+    for _ in range(M):
+        u = int(data[idx])
+        idx +=1
+        v = int(data[idx])
+        idx +=1
+        c = int(data[idx])
+        idx +=1
+        edges.append( (c, u-1, v-1) )
 
-print(max_len)
+    # Sort edges by cost
+    edges.sort()
+    
+    # Group edges by cos
