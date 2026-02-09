@@ -1,23 +1,19 @@
-def gen_ordinary_lists(n):
-    up_lis = list(range(1, n * 20001, 20001))
-    return up_lis, up_lis[::-1]
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-
-def argsort(lis):
-    tpls = [(l, i) for i, l in enumerate(lis)]
-    return sorted(tpls)
-
-
-def solve(N, lis):
-    up_list, down_list = gen_ordinary_lists(N)
-    arg_tpls = argsort(lis)
-    for val, idx in arg_tpls:
-        up_list[val - 1] += idx
-    print(*up_list)
-    print(*down_list)
-    
-
-N = int(input())
-lis = list(map(int, input().split()))
-
-solve(N, lis)
+import builtins
+import re
