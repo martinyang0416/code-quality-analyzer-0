@@ -1,20 +1,20 @@
-s = input().strip()
+MOD = 10**9 + 7
 
-vowels = {'a', 'e', 'i', 'o', 'u'}
-
-non_vowels = []
-for c in s:
-    if c.lower() not in vowels:
-        non_vowels.append(c)
-reversed_non_vowels = non_vowels[::-1]
-
-result = []
-ptr = 0
-for c in s:
-    if c.lower() in vowels:
-        result.append(c)
-    else:
-        result.append(reversed_non_vowels[ptr])
-        ptr += 1
-
-print(''.join(result))
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    m = int(input[0])
+    b = list(map(int, input[1:m+1]))
+    
+    # Assign ranks in decreasing order
+    sorted_b = sorted(b, reverse=True)
+    rank = {v:i+1 for i, v in enumerate(sorted_b)}
+    r = [rank[v] for v in b]
+    
+    class FenwickTree:
+        def __init__(self, size):
+            self.n = size
+            self.tree = [0] * (self.n + 2)
+        
+        def update(self, idx, delta):
+            while i
