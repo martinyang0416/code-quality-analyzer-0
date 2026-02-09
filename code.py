@@ -1,1 +1,5 @@
-Okay, let's see. The problem is to take an input integer a between 1 and 30 and output another integer. The example given is input 3 outputs 27. Hmm, wait, 3 cubed is 27. So maybe the task is to compute a cubed? That seems straightforward. But let me think again. Are there any other possible interpretations? Like maybe factorial or something else? Let's check the example again. 3*3*3 is 27, which fits. So if a is 3, output is 3^3. Let's test another example in my mind. If a was 2, then output sh
+Okay, I need to solve this problem where the input is an integer a between 1 and 30, and the output is another integer. The example given is input 3 outputs 27. Let me think about what's going on here. 
+
+Hmm, 3 cubed is 27. Oh wait, so maybe the problem is just to compute a cubed? Let me check. If that's the case, then the output is simply a multiplied by itself three times. So for a=3, 3*3*3 is 27, which matches the example. 
+
+But wait, maybe there's a trick here. Let me think of other possibil
