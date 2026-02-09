@@ -1,16 +1,17 @@
-n, k = map(int, input().split())
-ids = list(map(int, input().split()))
+n, k, p = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
 
-low, high = 1, n
-while low < high:
-    mid = (low + high) // 2
-    s = mid * (mid + 1) // 2
-    if s >= k:
-        high = mid
-    else:
-        low = mid + 1
+a.sort()
+b.sort()
 
-m = low
-sum_prev = (m - 1) * m // 2
-index = k - sum_prev - 1
-print(ids[index])
+min_time = float('inf')
+
+for s in range(len(b) - n + 1):
+    current_max = 0
+    for i in range(n):
+        time = abs(a[i] - b[s + i]) + abs(b[s + i] - p)
+        current_max = max(current_max, time)
+    min_time = min(min_time, current_max)
+
+print(min_time)
