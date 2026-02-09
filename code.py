@@ -1,15 +1,19 @@
-Takahashi is a teacher responsible for a class of N students.
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-The students are given distinct student numbers from 1 to N.
-
-Today, all the students entered the classroom at different times.
-
-According to Takahashi's record, there were A_i students in the classroom when student number i entered the classroom (including student number i).
-
-From these records, reconstruct the order in which the students entered the classroom.
-
-Constraints
-
-* 1 \le N \le 10^5
-* 1 \le A_i \le N
-* A_i \neq A_j  (i \n
+import builtins
+import re
