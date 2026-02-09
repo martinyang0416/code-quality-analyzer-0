@@ -1,16 +1,20 @@
-class SegmentTree:
-    def __init__(self, data):
-        self.n = len(data)
-        self.tree = [0] * (4 * self.n)
-        self.build(0, self.n - 1, 1, data)
-    
-    def build(self, l, r, node, data):
-        if l == r:
-            self.tree[node] = 1 << (ord(data[l]) - ord('a'))
-            return
-        mid = (l + r) // 2
-        self.build(l, mid, 2 * node, data)
-        self.build(mid + 1, r, 2 * node + 1, data)
-        self.tree[node] = self.tree[2 * node] | self.tree[2 * node + 1]
-    
- 
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        N, K = map(int, input[idx:idx+2])
+        idx +=2
+        A = list(map(int, input[idx:idx+N]))
+        idx += N
+        
+        # Compute inv_A: inversions in original array
+        inv_A = 0
+        for i in range(N):
+            for j in range(i+1, N):
+                if A[i] > A[j]:
+                    inv_A += 1
+        
+        # Compute cross_pair
