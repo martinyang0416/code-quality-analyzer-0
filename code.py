@@ -1,19 +1,20 @@
 import sys
 
-def generate_partitions(remaining):
-    if not remaining:
-        return [ [] ]
-    first = remaining[0]
-    res = []
-    for i in range(1, len(remaining)):
-        second = remaining[i]
-        new_remaining = remaining[1:i] + remaining[i+1:]
-        for p in generate_partitions(new_remaining):
-            res.append( [ (first, second) ] + p )
-    return res
+def generate_all_pairings():
+    numbers = [1, 2, 3, 4, 5, 6]
+    all_p = []
 
-# Precompute all possible partitions for 6 elements
-all_partitions = generate_partitions([1,2,3,4,5,6])
+    def helper(remaining, path):
+        if not remaining:
+            all_p.append(path)
+            return
+        first = remaining[0]
+        for i in range(1, len(remaining)):
+            pair = (first, remaining[i])
+            new_remaining = remaining[1:i] + remaining[i+1:]
+            helper(new_remaining, path + [pair])
 
-def main():
-    inpu
+    helper(numbers, [])
+    return all_p
+
+all_pairings = generate_all_pairing
