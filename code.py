@@ -1,27 +1,19 @@
 import sys
-sys.setrecursionlimit(1 << 25)
 
 def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    n = int(data[0])
-    m = int(data[1])
+    n, m = map(int, sys.stdin.readline().split())
+    # Read m edges (not used in the solution)
+    for _ in range(m):
+        a, b = map(int, sys.stdin.readline().split())
+    t = list(map(int, sys.stdin.readline().split()))
     
-    if m == 0:
-        print(0)
-        return
-    
-    parent = list(range(n + 1))
-    
-    def find(u):
-        while parent[u] != u:
-            parent[u] = parent[parent[u]]
-            u = parent[u]
-        return u
-    
-    def union(u, v):
-        u_root = find(u)
-        v_root = find(v)
-        if u_root == v_root:
-   
+    # Check if all topics are unique and cover 1..n
+    topic_set = set()
+    for num in t:
+        if num < 1 or num > n:
+            print(-1)
+            return
+        if num in topic_set:
+            print(-1)
+            return
+        top
