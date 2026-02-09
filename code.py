@@ -1,24 +1,18 @@
 def putaway(A, B, T, X, Y, W, S):
-    # Compute max_X and max_Y
-    if A == 0:
-        max_X = 0
-    else:
-        max_X = max(X)
-    if B == 0:
-        max_Y = 0
-    else:
-        max_Y = max(Y)
-    
-    mandatory_w = 0
-    mandatory_s = 0
-    flexible = 0
+    count_a = 0
+    count_b = 0
+    count_c = 0
+    eligible_w = []
+    eligible_s = []
 
+    # Classify each toy into count_a, count_b, count_c, and collect eligible weights and sizes
     for i in range(T):
         w = W[i]
         s = S[i]
-        is_weak = (A > 0 and w < max_X)
-        is_small = (B > 0 and s < max_Y)
-        
-        if not (is_weak or is_small):
+        eligibleW = any(w < x for x in X) if A > 0 else False
+        eligibleS = any(s < y for y in Y) if B > 0 else False
+
+        if not eligibleW and not eligibleS:
             return -1
-        if is_weak and not is_smal
+
+        if eligibleW and eligible
