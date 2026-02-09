@@ -1,10 +1,10 @@
-P, K = map(int, input().split())
-participants = list(range(1, P + 1))
-current = 0
-
-while len(participants) > 1:
-    idx = (current + K - 1) % len(participants)
-    del participants[idx]
-    current = idx % len(participants)
-
-print(participants[0])
+n = int(input())
+total = 0.0
+for m in range(1, n + 1):
+    if m == 1:
+        denom = 1
+    else:
+        denom = 3 * m - 1
+    total += 2 / denom
+rounded_total = round(total, 2)
+print("{0:.2f}".format(rounded_total))
