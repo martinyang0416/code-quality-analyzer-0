@@ -1,15 +1,21 @@
-n, m = map(int, input().split())
-board = [list(map(int, list(input().strip()))) for _ in range(n)]
+import sys
+from sys import stdin
+from collections import defaultdict
 
-# Precompute p1 and p2 matrices
-p1 = [[0] * m for _ in range(n)]
-p2 = [[0] * m for _ in range(n)]
-for i in range(n):
-    for j in range(m):
-        expected_p1 = (i + j) % 2
-        p1[i][j] = 1 if (board[i][j] == expected_p1) else 0
-        expected_p2 = 1 - expected_p1
-        p2[i][j] = 1 if (board[i][j] == expected_p2) else 0
-
-# Compute prefix sums for p1 and p2
-sum_p1 = [[0] * (m + 1) for _ i
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr += 1
+    for _ in range(T):
+        N = int(input[ptr])
+        ptr += 1
+        edges = [[] for _ in range(N+1)]
+        for _ in range(N-1):
+            u = int(input[ptr])
+            v = int(input[ptr+1])
+            ptr += 2
+            edges[u].append(v)
+            edges[v].append(u)
+        if (N-1) % 3 != 0:
+            print(
