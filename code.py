@@ -1,18 +1,20 @@
-MOD = 10**9 + 7
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    n = int(input[idx]); idx +=1
+    m = int(input[idx]); idx +=1
+    k = int(input[idx]); idx +=1
 
-n = int(input())
+    vertical_cuts = set()
+    horizontal_cuts = set()
 
-if n < 2:
-    print(0)
-else:
-    # Compute factorial(n) mod MOD
-    fact = 1
-    for i in range(2, n + 1):
-        fact = (fact * i) % MOD
-    
-    # Compute 2^(n-1) mod MOD
-    pow2 = pow(2, n - 1, MOD)
-    
-    # Calculate the result
-    result = (fact - pow2) % MOD
-    print(result)
+    for _ in range(k):
+        x1 = int(input[idx]); y1 = int(input[idx+1]); x2 = int(input[idx+2]); y2 = int(input[idx+3])
+        idx +=4
+        if x1 == x2:
+            vertical_cuts.add(x1)
+        else:
+            horizontal_cuts.add(y1)
+
+    def compute_interva
