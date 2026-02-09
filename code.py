@@ -1,21 +1,20 @@
-import sys
-from collections import deque
-
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    graph = [[] for _ in range(n+1)]
-    for _ in range(m):
-        u, v = map(int, sys.stdin.readline().split())
-        graph[u].append(v)
+def maxScore(cardPoints, k):
+    n = len(cardPoints)
+    prefix = [0]
+    current_sum = 0
+    for i in range(k):
+        current_sum += cardPoints[i]
+        prefix.append(current_sum)
     
-    INF = float('inf')
-    dist = [[INF] * (n+1) for _ in range(n+1)]
+    suffix = [0]
+    current_sum = 0
+    for i in range(1, k + 1):
+        current_sum += cardPoints[-i]
+        suffix.append(current_sum)
     
-    for u in range(1, n+1):
-        q = deque()
-        dist_u = [INF] * (n+1)
-        dist_u[u] = 0
-        q.append(u)
-        while q:
-            current = q.popleft()
-   
+    max_score = 0
+    for l in range(0, k + 1):
+        r = k - l
+        current = prefix[l] + suffix[r]
+        if current > max_score:
+            max_score = cur
