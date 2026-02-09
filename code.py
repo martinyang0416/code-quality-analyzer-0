@@ -1,17 +1,16 @@
-def main():
-    import sys
-    n, k = map(int, sys.stdin.readline().split())
-    d = list(map(int, sys.stdin.readline().split()))
-    
-    # Compute prefix sums
-    prefix = [0] * (n + 1)
-    for i in range(1, n+1):
-        prefix[i] = prefix[i-1] + d[i-1]
-    
-    def is_feasible(mask):
-        # dp[i][j] means up to first i elements, j splits, meet the condition.
-        dp = [[False]*(k+1) for _ in range(n+1)]
-        dp[0][0] = True
-        
-        for i in range(1, n+1):
-            for j 
+def count_even_squares(N):
+    if N < 2:
+        return 0
+    max_s = N if N % 2 == 0 else N - 1
+    if max_s < 2:
+        return 0
+    total = 0
+    for s in range(2, max_s + 1, 2):
+        step = (N - s) // 2
+        total += (step + 1) ** 2
+    return total
+
+T = int(input())
+for _ in range(T):
+    N = int(input())
+    print(count_even_squares(N))
