@@ -1,20 +1,22 @@
-import sys
-from collections import defaultdict
+n = int(input())
+x = list(map(int, input().split()))
+v = list(map(int, input().split()))
 
-MOD = 10**9 + 7
+robots = sorted(zip(x, v), key=lambda r: r[0])
 
-def main():
-    n = int(sys.stdin.readline())
-    actions = []
-    place_x_counts = defaultdict(int)
+low = robots[0][0]
+high = robots[-1][0]
 
-    # Read all actions and track place occurrences
-    for _ in range(n):
-        parts = sys.stdin.readline().split()
-        if parts[0] == "CLAIM":
-            x = int(parts[1])
-            actions.append(("CLAIM", x))
-        else:
-            x = int(parts[1])
-            actions.append(("PLACE", x))
-            place_x_counts
+epsilon = 1e-12
+iterations = 100
+
+for _ in range(iterations):
+    if high - low < epsilon:
+        break
+    mid1 = low + (high - low) / 3
+    mid2 = high - (high - low) / 3
+    f1 = max(abs(xi - mid1) / vi for xi, vi in robots)
+    f2 = max(abs(xi - mid2) / vi for xi, vi in robots)
+    if f1 < f2:
+        high = mid2
+ 
