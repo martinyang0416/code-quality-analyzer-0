@@ -1,19 +1,11 @@
-import sys
+n = int(input())
+ropes = list(map(int, input().split()))
+from collections import Counter
 
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    drinks = list(map(int, sys.stdin.readline().split()))
-    guests = []
-    for i in range(m):
-        x, y = map(int, sys.stdin.readline().split())
-        guests.append((x-1, y-1))  # Convert to 0-based indices
+freq = Counter(ropes)
+total_loops = 0
 
-    # Track forced guests and their choices
-    forced = [False] * m
-    chosen = [None] * m
-    remaining = drinks.copy()
-    possible = True
+for count in freq.values():
+    total_loops += count // 3
 
-    for idx in range(m):
-        x, y = guests[idx]
-        a_zero
+print(total_loops)
