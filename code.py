@@ -1,20 +1,23 @@
 def putaway(A, B, T, X, Y, W, S):
-    can_weak = [False] * T
-    can_small = [False] * T
+    # Precompute eligibility for each toy
+    toys_w_ok = [False] * T
+    toys_s_ok = [False] * T
 
     for i in range(T):
-        # Check can_weak[i]
+        w = W[i]
+        s = S[i]
+
+        # Check weak eligibility
+        w_ok = False
         for x in X:
-            if x > W[i]:
-                can_weak[i] = True
+            if w < x:
+                w_ok = True
                 break
-        # Check can_small[i]
+        # Check small eligibility
+        s_ok = False
         for y in Y:
-            if y > S[i]:
-                can_small[i] = True
+            if s < y:
+                s_ok = True
                 break
 
-    # Check if any toy cannot be handled by any robot
-    for i in range(T):
-        if not (can_weak[i] or can_small[i]):
- 
+        toys_w_
