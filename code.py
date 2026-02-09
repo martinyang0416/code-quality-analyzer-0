@@ -1,24 +1,23 @@
-k = int(input())
-numbers = list(map(int, input().split()))
-zero_present = 0 in numbers
-non_zero = [x for x in numbers if x != 0]
+s = input().strip()
+t = input().strip()
 
-def get_mask(n):
-    mask = 0
-    pos = 0
-    while n > 0:
-        digit = n % 10
-        if digit != 0:
-            mask |= (1 << pos)
-        n = n // 10
-        pos += 1
-    return mask
+from collections import Counter
 
-masks = [get_mask(num) for num in non_zero]
+count_s = Counter(s)
+count_t = Counter(t)
 
-# DP: mask -> (count, list)
-dp = {0: (0, [])}
-for i in range(len(non_zero)):
-    num = non_zero[i]
-    mask = masks[i]
-    current_mask
+# Check if t can be formed by deleting characters (subset check)
+for char in count_t:
+    if count_t[char] > count_s.get(char, 0):
+        print("need tree")
+        exit()
+
+# Check if s and t are anagrams
+if sorted(s) == sorted(t):
+    print("array")
+else:
+    # Check if t is a subsequence of s
+    i = j = 0
+    n, m = len(s), len(t)
+    while i < n and j < m:
+        if s[i] == 
