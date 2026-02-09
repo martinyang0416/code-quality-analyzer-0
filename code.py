@@ -1,19 +1,19 @@
-def characterReplacement(s, k):
-    count = {}
-    max_length = 0
-    max_count = 0
-    left = 0
+def minCut(s):
+    n = len(s)
+    if n == 0:
+        return 0
+    # Precompute palindrome table
+    is_pal = [[False] * n for _ in range(n)]
+    for i in range(n-1, -1, -1):
+        for j in range(i, n):
+            if i == j:
+                is_pal[i][j] = True
+            elif j == i + 1:
+                is_pal[i][j] = (s[i] == s[j])
+            else:
+                is_pal[i][j] = (s[i] == s[j] and is_pal[i+1][j-1])
     
-    for right in range(len(s)):
-        char = s[right]
-        count[char] = count.get(char, 0) + 1
-        max_count = max(max_count, count[char])
-        
-        while (right - left + 1 - max_count) > k:
-            left_char = s[left]
-            count[left_char] -= 1
-            left += 1
-        
-        max_length = max(max_length, right - left + 1)
-    
-    return max_length
+    # Compute minimum cuts
+    dp = [0] * n
+    for i in range(n):
+     
