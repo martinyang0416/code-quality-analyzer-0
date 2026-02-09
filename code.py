@@ -1,11 +1,18 @@
-import sys
+n = int(input())
+a = list(map(int, input().split()))
 
-def main():
-    input = sys.stdin.read().split()
-    T = int(input[0])
-    for i in range(1, T+1):
-        N = int(input[i])
-        print(N * (N + 3) // 2)
+even_single = 0
+prefix = 0
+counts = {0: 1}
+result = 0
 
-if __name__ == "__main__":
-    main()
+for num in a:
+    cnt = bin(num).count('1')
+    if cnt % 2 == 0:
+        even_single += 1
+    prefix = (prefix + cnt) % 2
+    result += counts.get(prefix, 0)
+    counts[prefix] = counts.get(prefix, 0) + 1
+
+result -= even_single
+print(result)
