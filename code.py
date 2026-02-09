@@ -1,19 +1,16 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
-
-import builtins
-import re
+def minint(n, a):
+    for i in range(n):
+        l=a[i][0]
+        r=a[i][1]
+        d=a[i][2]
+        if  l<= d<=r:
+            print((r//d+1)*d)
+        else:
+            print(d)
+n=int(input())
+v=[]
+for i in range(n):
+    a = input().strip().split()
+    a = list(map(int, a))
+    v.append(a)
+minint(n, v)
