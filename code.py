@@ -1,6 +1,6 @@
-MOD = 10**9 + 7
+n, m = map(int, input().split())
+rows = (1 << n) - 1
+cols = (1 << m) - 1
 
-P, Q = map(int, input().split())
-
-result = pow(Q + 1, P, MOD) * pow(P + 1, Q, MOD) % MOD
-print(result)
+for _ in range(rows):
+    print('0' * cols)
