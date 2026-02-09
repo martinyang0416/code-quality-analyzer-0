@@ -1,18 +1,23 @@
-def generate_spiral(n):
-    grid = [['.' for _ in range(n)] for _ in range(n)]
-    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-    dir_idx = 0
-    steps = [n//2, n//2 -1]
-    row, col = n//2 -1, n//2 -1
-    if n % 2 != 0:
-        return None
-    count = 0
-    grid[row][col] = 'E'
-    count +=1
-    while True:
-        for _ in range(2):
-            step = steps[dir_idx%2]
-            if step <=0:
-                return grid
-            for __ in range(step):
-                dr, dc = direction
+n = int(input())
+if n == 0:
+    print(0)
+    exit()
+
+positions = {0: (0, 0)}
+
+for i in range(1, n):
+    parent, direction = map(int, input().split())
+    x, y = positions[parent]
+    if direction == 0:  # left
+        new_x = x - 1
+        new_y = y
+    elif direction == 1:  # down
+        new_x = x
+        new_y = y - 1
+    elif direction == 2:  # right
+        new_x = x + 1
+        new_y = y
+    else:  # up (direction 3)
+        new_x = x
+        new_y = y + 1
+    positions[i] = (new_x, new_y)
