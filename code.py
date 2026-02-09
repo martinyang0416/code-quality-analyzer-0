@@ -1,19 +1,18 @@
 import sys
-import math
 
-def cross(o, a, b):
-    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
-
-def convex_hull(points):
-    points = sorted(points)
-    if len(points) <= 1:
-        return points
-    lower = []
-    for p in points:
-        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
-            lower.pop()
-        lower.append(p)
-    upper = []
-    for p in reversed(points):
-        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
-          
+def main():
+    N = int(sys.stdin.readline())
+    result = []
+    for _ in range(N):
+        parts = list(map(int, sys.stdin.readline().split()))
+        a, b, c, d, e = parts
+        S = a + b + c
+        
+        # Generate all triplets for S
+        triplets = []
+        for a1 in range(0, 3):
+            for b1 in range(0, 3):
+                for c1 in range(0, 3):
+                    if a1 + b1 + c1 == S:
+                        triplets.append((a1, b1, c1))
+        # Sort the t
