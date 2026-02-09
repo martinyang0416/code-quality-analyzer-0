@@ -1,15 +1,23 @@
-s = input().strip()
-vowels = {'a', 'e', 'i', 'o', 'u'}
-v_count = 0
-c_count = 0
+import sys
+from collections import defaultdict
 
-for char in s:
-    if char in vowels:
-        v_count += 1
-    else:
-        c_count += 1
+def main():
+    m = int(sys.stdin.readline())
+    edges = []
+    outgoing = defaultdict(list)
 
-if v_count == c_count:
-    print("Balanced")
-else:
-    print("Unbalanced")
+    for idx in range(m):
+        u, v = map(int, sys.stdin.readline().split())
+        edges.append((u, v))
+        outgoing[u].append(idx)
+    
+    max_degree = 0
+    for u in outgoing:
+        current = len(outgoing[u])
+        if current > max_degree:
+            max_degree = current
+    
+    k = max_degree
+    colors = [0] * m
+
+    for u in outgoing:
