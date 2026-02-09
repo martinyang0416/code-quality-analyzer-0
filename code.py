@@ -1,14 +1,19 @@
-def f(l):
-    for i in range(len(l)-1):
-        if l[i] > l[i+1]:
-            break
-    #print(i+1)
-    if sorted(l[i+1:],reverse=True) == l[i+1:]:return 0
-    return 1
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-M = 10**9 + 7
-R = lambda: map(int, input().split())
-n = int(input())
-L = list(R())
-if len(set(L)) != n:print("NO")
-else:print("YNEOS"[f(L)::2])
+import builtins
+import re
