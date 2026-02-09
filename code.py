@@ -1,17 +1,17 @@
-from collections import defaultdict
+def convert_to_base(n, k):
+    if n == 0:
+        return '0'
+    digits = []
+    while n > 0:
+        digits.append(str(n % k))
+        n = n // k
+    return ''.join(reversed(digits))
 
-s = input().strip()
-counts = defaultdict(int)
-month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+k = int(input())
 
-for i in range(len(s) - 9):
-    substring = s[i:i+10]
-    if substring[2] != '-' or substring[5] != '-':
-        continue
-    day_part = substring[:2]
-    month_part = substring[3:5]
-    year_part = substring[6:10]
-    if not (day_part.isdigit() and month_part.isdigit() and year_part.isdigit()):
-        continue
-    day = int(day_part)
-    month = int(
+for i in range(1, k):
+    row = []
+    for j in range(1, k):
+        product = i * j
+        row.append(convert_to_base(product, k))
+    print(' '.join(row))
