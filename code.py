@@ -1,21 +1,18 @@
-import math
+import sys
 
-def main():
-    n = int(input())
-    points = []
-    for _ in range(n):
-        x, y = map(float, input().split())
-        points.append((x, y))
-    
-    sum_x = sum(x for x, y in points)
-    sum_y = sum(y for x, y in points)
-    sum_xy = sum(x * y for x, y in points)
-    sum_x2 = sum(x**2 for x, y in points)
-    
-    numerator = n * sum_xy - sum_x * sum_y
-    denominator = n * sum_x2 - sum_x ** 2
-    
-    if denominator == 0:
-        theta_deg = 90.0
-    else:
-        m = numerator
+def cross(o, a, b):
+    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+
+def convex_hull(points):
+    points = sorted(points)
+    if len(points) <= 1:
+        return points
+    lower = []
+    for p in points:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
+            lower.pop()
+        lower.append(p)
+    upper = []
+    for p in reversed(points):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
+            upper.pop(
