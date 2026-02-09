@@ -5,24 +5,23 @@ def main():
     input = sys.stdin.read().split()
     idx = 0
     N = int(input[idx])
-    idx +=1
+    idx += 1
     Q = int(input[idx])
-    idx +=1
+    idx += 1
 
-    S = input[idx]
-    idx +=1
-    special_str = input[idx]
-    idx +=1
+    s = input[idx]
+    idx += 1
 
-    # Parse the left and right endpoints
-    left = []
-    for i in range(N):
-        if S[i] == 'L':
-            left.append(i)
-    right = []
-    for i in range(N, 2*N):
-        if S[i] == 'R':
-            right.append(i - N)
+    L_indices = []
+    R_indices = []
+    for i, c in enumerate(s):
+        if c == 'L':
+            L_indices.append(i)
+        else:
+            R_indices.append(i)
 
-    # Precompute farthest array
-  
+    # Compute ℓ and r arrays (0-based)
+    l = [L_indices[i] + 1 for i in range(N)]
+    r = [R_indices[i] + 1 for i in range(N)]
+
+   
