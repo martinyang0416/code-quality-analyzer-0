@@ -1,22 +1,17 @@
-n, m = map(int, input().split())
-cyclic = [input().strip() for _ in range(n)]
-r, c = map(int, input().split())
-pattern = [input().strip() for _ in range(r)]
+n = int(input())
+a = list(map(int, input().split()))
+min_time = float('inf')
 
-constraints = []
-for x in range(r):
-    for y in range(c):
-        v = pattern[x][y]
-        if v != '?':
-            constraints.append((x, y, v))
+for k in range(n + 1):
+    if k == 0:
+        current = 10**6 - a[0]
+    elif k == n:
+        current = a[-1] - 1
+    else:
+        my_time = a[k-1] - 1
+        friend_time = 10**6 - a[k]
+        current = max(my_time, friend_time)
+    if current < min_time:
+        min_time = current
 
-if not constraints:
-    for _ in range(n):
-        print('1' * m)
-    exit()
-
-result = [[1]*m for _ in range(n)]
-
-for dx, dy, v in constraints:
-    mask = [[0]*m for _ in range(n)]
-    for i in
+print(min_time)
