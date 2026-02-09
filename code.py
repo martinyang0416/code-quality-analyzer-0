@@ -1,23 +1,12 @@
-MOD = 10**9 + 7
+from collections import defaultdict
 
-def count_ways(s):
-    n = len(s)
-    prefix = [0] * (n + 1)
-    for i in range(n):
-        prefix[i+1] = prefix[i] + (1 if s[i] == '1' else 0)
-    
-    total_ones = prefix[-1]
-    if total_ones % 3 != 0:
-        return 0
-    
-    if total_ones == 0:
-        return ((n-1) * (n-2) // 2) % MOD
-    
-    target = total_ones // 3
-    first_candidates = []
-    for i in range(n):
-        if prefix[i+1] == target:
-            first_candidates.append(i)
-    
-    second_candidates = []
-  
+def subarraySum(nums, k):
+    count = 0
+    prefix_sum = defaultdict(int)
+    prefix_sum[0] = 1
+    current_sum = 0
+    for num in nums:
+        current_sum += num
+        count += prefix_sum.get(current_sum - k, 0)
+        prefix_sum[current_sum] += 1
+    return count
