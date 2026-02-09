@@ -1,21 +1,15 @@
-import sys
+n, m = map(int, input().split())
+board = [list(map(int, list(input().strip()))) for _ in range(n)]
 
-def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
-    for _ in range(T):
-        N = int(input[ptr])
-        ptr += 1
-        arr = list(map(int, input[ptr:ptr+N]))
-        ptr += N
-        max_len = 2
-        for i in range(N-1):
-            a = arr[i]
-            b = arr[i+1]
-            current_len = 2
-            next_idx = i + 2
-            while next_idx < N:
-                expected = a + b
-                if arr[next_idx] == exp
+# Precompute p1 and p2 matrices
+p1 = [[0] * m for _ in range(n)]
+p2 = [[0] * m for _ in range(n)]
+for i in range(n):
+    for j in range(m):
+        expected_p1 = (i + j) % 2
+        p1[i][j] = 1 if (board[i][j] == expected_p1) else 0
+        expected_p2 = 1 - expected_p1
+        p2[i][j] = 1 if (board[i][j] == expected_p2) else 0
+
+# Compute prefix sums for p1 and p2
+sum_p1 = [[0] * (m + 1) for _ i
