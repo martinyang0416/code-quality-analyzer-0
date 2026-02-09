@@ -1,17 +1,19 @@
-n = int(input())
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-numbers = list(map(int, input().split()))
-
-evens = list()
-odds = list()
-
-
-def fill_evens():
-    for k in numbers:
-        if k % 2 == 0:
-            evens.append(k)
-        else:
-            odds.append(k)
-fill_evens()
-distinct = evens[0] if len(evens) == 1 else odds[0]
-print(numbers.index(distinct) + 1)
+import builtins
+import re
