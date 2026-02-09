@@ -1,20 +1,19 @@
-import math
+n, k, m = map(int, input().split())
+coins = list(map(int, input().split()))
 
-def main():
-    n = int(input())
-    nums = [int(input()) for _ in range(n)]
+max_total = float('-inf')
+
+for L in range(0, k + 1):
+    for R in range(0, k - L + 1):
+        if L + R > n:
+            continue
+        if R == 0:
+            selected = coins[:L]
+        elif L == 0:
+            selected = coins[-R:]
+        else:
+            selected = coins[:L] + coins[-R:]
+        sum_total = sum(selected)
+        sorted_selected = sorted(selected)
+        x_max = min(m, len(sorted_selected))
     
-    non_zero = [x for x in nums if x != 0]
-    zeros = [x for x in nums if x == 0]
-    
-    # Custom key function for sorting
-    def sort_key(x):
-        if x == 0:
-            return (0, x)  # Not used here since non_zero has no zeros
-        return (-(math.log(x) / x), x)
-    
-    # Sort the non-zero elements
-    non_zero_sorted = sorted(non_zero, key=sort_key)
-    
-    # Combine and output
-    resu
