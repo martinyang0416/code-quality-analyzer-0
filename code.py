@@ -1,18 +1,13 @@
-n = int(input())
-a = list(map(int, input().split()))
+n, x, y = map(int, input().split())
+s = input().strip()
 
-even_single = 0
-prefix = 0
-counts = {0: 1}
-result = 0
+suffix = s[-x:]
+target = ['0'] * x
+target[x - y - 1] = '1'
 
-for num in a:
-    cnt = bin(num).count('1')
-    if cnt % 2 == 0:
-        even_single += 1
-    prefix = (prefix + cnt) % 2
-    result += counts.get(prefix, 0)
-    counts[prefix] = counts.get(prefix, 0) + 1
+count = 0
+for i in range(x):
+    if suffix[i] != target[i]:
+        count += 1
 
-result -= even_single
-print(result)
+print(count)
