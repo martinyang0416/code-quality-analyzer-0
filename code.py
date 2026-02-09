@@ -1,13 +1,12 @@
 s = input().strip()
-n = len(s)
-if n % 2 == 0:
-    all_even = True
-    for c in s:
-        if int(c) % 2 != 0:
-            all_even = False
-            break
-    print("Yes" if all_even else "No")
-else:
-    mid = n // 2
-    mid_digit = int(s[mid])
-    print("Yes" if mid_digit % 2 == 1 else "No")
+total = sum(int(c) for c in s)
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+print("Yes" if is_prime(total) else "No")
