@@ -1,16 +1,20 @@
-def count_even_squares(N):
-    if N < 2:
-        return 0
-    max_s = N if N % 2 == 0 else N - 1
-    if max_s < 2:
-        return 0
-    total = 0
-    for s in range(2, max_s + 1, 2):
-        step = (N - s) // 2
-        total += (step + 1) ** 2
-    return total
+n = int(input())
+s = list(map(int, input().split()))
+max_dp = {}
+max_sum = 0
 
-T = int(input())
-for _ in range(T):
-    N = int(input())
-    print(count_even_squares(N))
+for i in range(n):
+    k = s[i] - (i + 1)
+    if k in max_dp:
+        current = max_dp[k] + s[i]
+    else:
+        current = s[i]
+    if k in max_dp:
+        if current > max_dp[k]:
+            max_dp[k] = current
+    else:
+        max_dp[k] = current
+    if current > max_sum:
+        max_sum = current
+
+print(max_sum)
