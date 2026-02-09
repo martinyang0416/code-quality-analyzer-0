@@ -1,19 +1,22 @@
 import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
+reader = (line.rstrip() for line in sys.stdin)
+input = reader.__next__
 
-import builtins
-import re
+class SegmentTree() :
+	def __init__(self, size):
+		N = 1
+		while N < size:
+			N <<= 1
+			self.N = N
+			self.tree = [0] * (2 * N)
+
+	def update(self, index, value) :
+		index += self.N
+		self.tree[index] = value
+		flag = False
+		while index > 1 :
+			if flag :
+				self.tree[index >> 1] = self.tree[index] ^ self.tree[index ^ 1]
+			else :
+				self.tree[index >> 1] = self.tree[index] | self.tree[index ^ 1]
+			flag = not 
