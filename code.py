@@ -1,19 +1,19 @@
-rr = lambda: input().strip()
-rri = lambda: int(rr())
-rrm = lambda: map(int, rr().split())
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def solve(a,b,c):
-    mi = min(a,b,c)
-    mi += 1
-    ma = max(a,b,c)
-    ma -= 1
-    if(ma-mi>=0):
-        return 2*(ma-mi)
-    else:
-        return 0 
-
-T = rri()
-for i in range(T):
-    a,b,c = rrm()
-    ans = solve(a,b,c)
-    print(ans) 
+import builtins
+import re
