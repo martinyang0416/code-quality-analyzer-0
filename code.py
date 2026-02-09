@@ -1,5 +1,9 @@
-def angleClock(hour: int, minutes: int) -> float:
-    hour_angle = (hour % 12) * 30 + 0.5 * minutes
-    minute_angle = 6 * minutes
-    diff = abs(hour_angle - minute_angle)
-    return min(diff, 360 - diff)
+from collections import Counter
+
+def minSteps(s: str, t: str) -> int:
+    count_s = Counter(s)
+    count_t = Counter(t)
+    steps = 0
+    for c in 'abcdefghijklmnopqrstuvwxyz':
+        steps += max(0, count_s[c] - count_t[c])
+    return steps
