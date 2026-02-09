@@ -1,17 +1,19 @@
-def minCost(houses, cost, m, n, target):
-    INF = float('inf')
-    # Initialize DP table with infinity
-    dp = [[[INF] * (n + 1) for _ in range(target + 1)] for __ in range(m)]
+def characterReplacement(s, k):
+    count = {}
+    max_length = 0
+    max_count = 0
+    left = 0
     
-    # Base case: first house
-    if houses[0] == 0:
-        for c in range(1, n + 1):
-            dp[0][1][c] = cost[0][c - 1]
-    else:
-        dp[0][1][houses[0]] = 0
+    for right in range(len(s)):
+        char = s[right]
+        count[char] = count.get(char, 0) + 1
+        max_count = max(max_count, count[char])
+        
+        while (right - left + 1 - max_count) > k:
+            left_char = s[left]
+            count[left_char] -= 1
+            left += 1
+        
+        max_length = max(max_length, right - left + 1)
     
-    # Fill DP table
-    for i in range(1, m):
-        for k_prev in range(1, target + 1):
-            for c_prev in range(1, n + 1):
-         
+    return max_length
