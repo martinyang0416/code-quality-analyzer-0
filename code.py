@@ -1,14 +1,22 @@
-t = int(input())
-for _ in range(t):
-    n = int(input())
-    max_b = n // 12
-    found = False
-    for b in range(max_b, -1, -1):
-        remainder = n - 12 * b
-        if remainder >= 0 and remainder % 10 == 0:
-            a = remainder // 10
-            print(a + b)
-            found = True
-            break
-    if not found:
-        print(-1)
+mod = 10**9 + 7
+
+n, m = map(int, input().split())
+x = list(map(int, input().split()))
+y = list(map(int, input().split()))
+
+# Calculate sum for x coordinates
+sum_x = 0
+prefix_sum = [0] * n
+for i in range(1, n):
+    prefix_sum[i] = prefix_sum[i-1] + x[i-1]
+for j in range(1, n):
+    sum_x += x[j] * j - prefix_sum[j]
+sum_x %= mod
+
+# Calculate sum for y coordinates
+sum_y = 0
+prefix_sum_y = [0] * m
+for i in range(1, m):
+    prefix_sum_y[i] = prefix_sum_y[i-1] + y[i-1]
+for j in range(1, m):
+    sum_y +
