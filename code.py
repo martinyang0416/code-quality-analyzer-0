@@ -1,9 +1,19 @@
-def lengthOfLIS(nums):
-    if not nums:
+def maxRepOpt1(text):
+    from collections import defaultdict
+
+    # Split the text into groups of consecutive characters
+    groups = []
+    n = len(text)
+    if n == 0:
         return 0
-    dp = [1] * len(nums)
-    for i in range(len(nums)):
-        for j in range(i):
-            if nums[i] > nums[j]:
-                dp[i] = max(dp[i], dp[j] + 1)
-    return max(dp)
+    current_char = text[0]
+    start = 0
+    for i in range(1, n):
+        if text[i] != current_char:
+            groups.append((current_char, start, i - 1))
+            current_char = text[i]
+            start = i
+    groups.append((current_char, start, n - 1))
+
+    # Organize groups by character
+    char_gro
