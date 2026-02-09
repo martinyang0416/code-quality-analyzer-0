@@ -1,17 +1,21 @@
-n = int(input())
-points = [tuple(map(int, input().split())) for _ in range(n+1)]
-count = 0
+n, q = map(int, input().split())
 
-for i in range(1, n+1):
-    a = points[i-1]
-    b = points[i % (n+1)]
-    c = points[(i+1) % (n+1)]
-    abx = b[0] - a[0]
-    aby = b[1] - a[1]
-    bcx = c[0] - b[0]
-    bcy = c[1] - b[1]
-    dot = abx * bcx + aby * bcy
-    if dot > 0:
-        count += 1
+lower = [1] * (n + 1)  # 1-based indexing
+upper = [n] * (n + 1)
 
-print(count)
+for _ in range(q):
+    t, l, r, v = map(int, input().split())
+    if t == 1:
+        # At least v, update lower bound
+        for i in range(l, r + 1):
+            if lower[i] < v:
+                lower[i] = v
+    else:
+        # At most v, update upper bound
+        for i in range(l, r + 1):
+            if upper[i] > v:
+                upper[i] = v
+
+# Check for feasibility
+possible = True
+for i in
