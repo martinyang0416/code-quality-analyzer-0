@@ -1,20 +1,18 @@
-MOD = 10**9 + 7
+import math
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    m = int(input[0])
-    b = list(map(int, input[1:m+1]))
-    
-    # Assign ranks in decreasing order
-    sorted_b = sorted(b, reverse=True)
-    rank = {v:i+1 for i, v in enumerate(sorted_b)}
-    r = [rank[v] for v in b]
-    
-    class FenwickTree:
-        def __init__(self, size):
-            self.n = size
-            self.tree = [0] * (self.n + 2)
+def find_max_subarray_with_gcd_one():
+    T = int(input())
+    for _ in range(T):
+        N = int(input())
+        arr = list(map(int, input().split()))
+        max_length = -1
+        previous_gcds = {}
         
-        def update(self, idx, delta):
-            while i
+        for num in arr:
+            current_gcds = {}
+            # Consider the current number alone
+            current_gcds[num] = 1
+            
+            # Process each GCD from the previous step
+            for g in previous_gcds:
+                new_gcd = math.gcd(
