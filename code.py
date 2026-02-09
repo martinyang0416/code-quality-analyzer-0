@@ -1,11 +1,11 @@
-n = int(input())
-ropes = list(map(int, input().split()))
-from collections import Counter
-
-freq = Counter(ropes)
-total_loops = 0
-
-for count in freq.values():
-    total_loops += count // 3
-
-print(total_loops)
+t = input().strip()
+result = []
+for char in t:
+    if char == 'A':
+        result.append('A')
+    elif char == 'B':
+        result.append('B')
+    elif char == 'D':
+        if result:
+            result.pop()
+print(''.join(result))
