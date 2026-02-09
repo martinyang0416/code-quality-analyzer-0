@@ -1,17 +1,6 @@
-HPY, ATKY, DEFY = map(int, input().split())
-HPM, ATKM, DEFM = map(int, input().split())
-h_price, a_price, d_price = map(int, input().split())
+<think>
+Okay, let's see. The problem is to compute the last two digits of 5 raised to the power of n, where n can be really big, like up to 2e18. Hmm. Oh right, calculating 5^n directly isn't feasible because the number would be way too large. So I need a smart way to find the last two digits without computing the entire number.
 
-min_cost = float('inf')
+Wait, but wait. Let's think about powers of 5. Let's compute some small examples.
 
-a_min = max(0, DEFM - ATKY + 1)
-for a_add in range(a_min, a_min + 201):
-    atky_new = ATKY + a_add
-    dy = atky_new - DEFM
-    if dy <= 0:
-        continue
-    t = (HPM + dy - 1) // dy
-    d_max = max(0, ATKM - DEFY) + 200
-    for d_add in range(0, d_max + 1):
-        defy_new = DEFY + d_add
-        dm = max(0, ATKM - defy_new)
+5^1 is 5, last two digits 05. But the example for n=2 is 25. 5^2 is 25, so last two d
