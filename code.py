@@ -1,18 +1,20 @@
-def putaway(A, B, T, X, Y, W, S):
-    count_a = 0
-    count_b = 0
-    count_c = 0
-    eligible_w = []
-    eligible_s = []
+import bisect
 
-    # Classify each toy into count_a, count_b, count_c, and collect eligible weights and sizes
+def putaway(A, B, T, X, Y, W, S):
+    X_sorted = sorted(X)
+    Y_sorted = sorted(Y)
+    
+    can_weak_list = [False] * T
+    can_small_list = [False] * T
+    
     for i in range(T):
         w = W[i]
         s = S[i]
-        eligibleW = any(w < x for x in X) if A > 0 else False
-        eligibleS = any(s < y for y in Y) if B > 0 else False
-
-        if not eligibleW and not eligibleS:
-            return -1
-
-        if eligibleW and eligible
+        # Check can_weak
+        idx = bisect.bisect_right(X_sorted, w)
+        can_weak = (idx < len(X_sorted))
+        can_weak_list[i] = can_weak
+        # Check can_small
+        idx2 = bisect.bisect_right(Y_sorted, s)
+        can_small = (idx2 < len(Y_sorted))
+   
