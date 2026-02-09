@@ -1,27 +1,17 @@
-n, s_x, s_y = map(int, input().split())
+class DSU:
+    def __init__(self, n):
+        self.parent = list(range(n+1))
+        self.size = [1] * (n+1)
+        self.undo_steps = dict()  # Maps day to list of undo steps
 
-east = 0
-west = 0
-north = 0
-south = 0
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
 
-for _ in range(n):
-    x, y = map(int, input().split())
-    if x > s_x:
-        east += 1
-    elif x < s_x:
-        west += 1
-    if y > s_y:
-        north += 1
-    elif y < s_y:
-        south += 1
-
-max_count = max(east, west, north, south)
-directions = [
-    (east, (s_x + 1, s_y)),
-    (west, (s_x - 1, s_y)),
-    (north, (s_x, s_y + 1)),
-    (south, (s_x, s_y - 1)),
-]
-
-# Find the first direction with max_count and v
+    def union(self, x, y, day):
+        x_root = self.find(x)
+        y_root = self.find(y)
+        if x_root == y_root:
+            return
+        # Ensure x_root is the larger tree
