@@ -1,20 +1,21 @@
+import bisect
 import sys
+import math
 
-def putaway(A, B, T, X, Y, W, S):
-    is_weak = [False] * T
-    is_small = [False] * T
-    for i in range(T):
-        can_weak = any(x > W[i] for x in X)
-        can_small = any(y > S[i] for y in Y)
-        is_weak[i] = can_weak
-        is_small[i] = can_small
-        if not can_weak and not can_small:
-            return -1
+def main():
+    A, B, T = map(int, sys.stdin.readline().split())
+    X = list(map(int, sys.stdin.readline().split())) if A > 0 else []
+    Y = list(map(int, sys.stdin.readline().split())) if B > 0 else []
+    W = []
+    S = []
+    for _ in range(T):
+        w, s = map(int, sys.stdin.readline().split())
+        W.append(w)
+        S.append(s)
 
-    category1 = []
-    category2 = []
-    category3 = []
-    for i in range(T):
-        if is_weak[i] and not is_small[i]:
-            category2.append(W[i])
-   
+    X.sort()
+    Y.sort()
+
+    count1 = 0  # must be handled by weak
+    count2 = 0  # must be handled by small
+    c
