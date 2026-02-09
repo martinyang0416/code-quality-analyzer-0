@@ -1,17 +1,16 @@
-n = int(input())
-a = list(map(int, input().split()))
-min_time = float('inf')
+import sys
 
-for k in range(n + 1):
-    if k == 0:
-        current = 10**6 - a[0]
-    elif k == n:
-        current = a[-1] - 1
-    else:
-        my_time = a[k-1] - 1
-        friend_time = 10**6 - a[k]
-        current = max(my_time, friend_time)
-    if current < min_time:
-        min_time = current
+def main():
+    data = list(map(int, sys.stdin.read().split()))
+    ptr = 0
+    N, Q = data[ptr], data[ptr+1]
+    ptr += 2
+    A = data[ptr:ptr+N]
+    ptr += N
+    queries = data[ptr:ptr+Q]
+    s = set(A)
+    for x in queries:
+        print("YES" if x in s else "NO")
 
-print(min_time)
+if __name__ == "__main__":
+    main()
