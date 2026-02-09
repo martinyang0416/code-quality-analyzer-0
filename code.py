@@ -1,19 +1,18 @@
-n = int(input())
-s = input().strip()
+from collections import Counter
 
-herbs = [i for i, c in enumerate(s) if c == 'H']
-if len(herbs) < 5:
-    print("impossible")
-else:
-    herb_set = set(herbs)
-    found = False
-    for i in range(len(herbs)):
-        for j in range(i + 1, len(herbs)):
-            a0 = herbs[i]
-            a1 = herbs[j]
-            d = a1 - a0
-            a2 = a0 + 2 * d
-            a3 = a0 + 3 * d
-            a4 = a0 + 4 * d
-            if a2 in herb_set and a3 in herb_set and a4 in herb_set:
-                
+n = int(input())
+given = [int(input()) for _ in range(n)]
+
+for m in range(1, 167):
+    a = m
+    d = 3 * m
+    # Check if all given numbers are between m and 3m
+    if any(num < a or num > d for num in given):
+        continue
+    # Generate all possible x values
+    for x in range(a, 2 * m + 1):
+        y = 4 * m - x
+        if y < x or y > d:
+            continue  # Ensure y is within bounds
+        four_set = [a, x, y, d]
+        four_freq = Counter(four_set)
