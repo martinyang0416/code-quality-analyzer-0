@@ -1,21 +1,23 @@
-import math
-
-def readint():
-    return list(map(int, input().split()))
-
 def main():
-    M, P = map(int, input().split())
-    zones = []
-    for _ in range(M):
-        x, y, z, r, e = map(int, input().split())
-        zones.append((x, y, z, r, e))
-    
-    for _ in range(P):
-        sx, sy, sz, dx, dy, dz = map(int, input().split())
-        A = (sx, sy, sz)
-        B = (dx, dy, dz)
-        total_e = 0
-        
-        for (cx, cy, cz, r, e) in zones:
-            # Compute dA_sq and dB_sq
-        
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    L = int(input[idx])
+    idx += 1
+    for _ in range(L):
+        M = int(input[idx])
+        idx += 1
+        P = int(input[idx])
+        idx += 1
+        n = M + P - 1
+        k = P
+        if k == 0:
+            print(1 % 1000000000)
+            continue
+        result = 1
+        for i in range(1, k + 1):
+            result = result * (n - i + 1) // i
+        print(result % 1000000000)
+
+if __name__ == "__main__":
+ 
