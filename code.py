@@ -1,20 +1,25 @@
-import math
+import sys
 
-t = int(input())
-for _ in range(t):
-    n1 = int(input())
-    n2 = int(input())
-    k = int(input())
-    max_gcd = 0
-    for a in range(max(1, n1 - k), n1 + k + 1):
-        steps_a = abs(a - n1)
-        if steps_a > k:
-            continue
-        rem_steps = k - steps_a
-        min_b = max(1, n2 - rem_steps)
-        max_b = n2 + rem_steps
-        for b in range(min_b, max_b + 1):
-            steps_b = abs(b - n2)
-            if steps_a + steps_b > k:
-                continue
-      
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    N = int(input[ptr])
+    ptr += 1
+    Q = int(input[ptr])
+    ptr += 1
+    a = list(map(int, input[ptr:ptr+N]))
+    ptr += N
+    
+    pre_sum = [0] * (N + 1)
+    for i in range(1, N + 1):
+        pre_sum[i] = pre_sum[i-1] + a[i-1]
+    
+    for _ in range(Q):
+        L = int(input[ptr])
+        ptr += 1
+        R = int(input[ptr])
+        ptr += 1
+        
+        sum_res = pre_sum[R] - pre_sum[L-1]
+        if L == R:
+   
