@@ -1,27 +1,20 @@
-s = input().strip()
-open_count = s.count('(')
-close_count = s.count(')')
-hashtags = [i for i, c in enumerate(s) if c == '#']
-k = len(hashtags)
-if k == 0:
-    print(-1)
-    exit()
+import sys
+from collections import defaultdict
 
-required = open_count - close_count
-if required < k or open_count < close_count:
-    print(-1)
-    exit()
-
-assignments = [1] * (k-1) + [required - (k-1)]
-if assignments[-1] < 1:
-    print(-1)
-    exit()
-
-current_assignment = 0
-balance = 0
-possible = True
-
-for c in s:
-    if c == '(':
-        balance += 1
-    elif c == 
+def main():
+    n, m = map(int, sys.stdin.readline().split())
+    rows = [sys.stdin.readline().strip() for _ in range(n)]
+    
+    freq = defaultdict(int)
+    for j in range(m):
+        c = 0
+        for i in range(n):
+            if rows[i][j] == '1':
+                c |= 1 << i
+        freq[c] += 1
+    
+    max_mask = (1 << n) - 1
+    bit_count = [0] * (max_mask + 1)
+    for x in range(max_mask + 1):
+        bit_count[x] = bin(x).count('1')
+    
