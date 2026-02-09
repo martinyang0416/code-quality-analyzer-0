@@ -1,16 +1,16 @@
-def is_vowel(c):
-    return c in {'A', 'E', 'I', 'O', 'U'}
+s = input().strip()
+n = len(s)
+values = [ord(c) - ord('A') + 1 for c in s]
 
-def main():
-    s = input().strip()
-    valid = True
-    for i in range(len(s)-1):
-        current = is_vowel(s[i])
-        next_char = is_vowel(s[i+1])
-        if current == next_char:
-            valid = False
-            break
-    print("YES" if valid else "NO")
+valid = True
+for i in range(n // 2):
+    if (values[i] + values[n - 1 - i]) % 2 != 0:
+        valid = False
+        break
 
-if __name__ == "__main__":
-    main()
+if valid and n % 2 == 1:
+    mid = values[n // 2]
+    if mid % 2 != 0:
+        valid = False
+
+print("YES" if valid else "NO")
