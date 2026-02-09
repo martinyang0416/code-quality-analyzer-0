@@ -1,19 +1,19 @@
-import heapq
-from collections import defaultdict
+import sys
+
+def check_triple(x, y, z):
+    return not (x <= y <= z or x >= y >= z)
+
+def is_valid_quadruple(a, b, c, d):
+    return (check_triple(a, b, c) and check_triple(a, b, d) and
+            check_triple(a, c, d) and check_triple(b, c, d))
 
 def main():
-    n, m, k, c, d = map(int, input().split())
-    a = list(map(int, input().split()))
-    streets = []
-    for _ in range(m):
-        x, y = map(int, input().split())
-        streets.append((x, y))
-    
-    directed_edges = defaultdict(list)
-    for x, y in streets:
-        directed_edges[x].append(y)
-        directed_edges[y].append(x)
-    
-    edge_counts = defaultdict(int)
-    total_discontent = 0
-    T_max = 200  # Sufficiently la
+    input = sys.stdin.read().split()
+    ptr = 0
+    n, q = int(input[ptr]), int(input[ptr+1])
+    ptr +=2
+    a = list(map(int, input[ptr:ptr+n]))
+    ptr +=n
+    for _ in range(q):
+        L = int(input[ptr])-1
+        R = int(input[ptr+1])
