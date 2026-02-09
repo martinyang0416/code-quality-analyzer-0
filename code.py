@@ -1,23 +1,21 @@
-n = int(input())
-if n == 0:
-    print(0)
-    exit()
+import sys
 
-positions = {0: (0, 0)}
-
-for i in range(1, n):
-    parent, direction = map(int, input().split())
-    x, y = positions[parent]
-    if direction == 0:  # left
-        new_x = x - 1
-        new_y = y
-    elif direction == 1:  # down
-        new_x = x
-        new_y = y - 1
-    elif direction == 2:  # right
-        new_x = x + 1
-        new_y = y
-    else:  # up (direction 3)
-        new_x = x
-        new_y = y + 1
-    positions[i] = (new_x, new_y)
+def main():
+    input = sys.stdin.read().split()
+    T = int(input[0])
+    index = 1
+    for _ in range(T):
+        R = int(input[index])
+        C = int(input[index+1])
+        G = int(input[index+2])
+        index +=3
+        remaining = G
+        current_col = C
+        previous = None
+        steps = []
+        while remaining > 0 and current_col >= 0:
+            w = current_col
+            if steps:
+                max_allowed = previous
+            else:
+                max_al
