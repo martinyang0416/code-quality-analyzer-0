@@ -1,22 +1,24 @@
-# Read and normalize all rectangles
-normalized = []
-for _ in range(6):
-    h, w = map(int, input().split())
-    if h > w:
-        h, w = w, h
-    normalized.append((h, w))
+n = int(input())
+hero = list(map(int, input().split()))
+h0, a0, d0, s0 = hero
+enemies = []
+for _ in range(n):
+    h, a, d, s = map(int, input().split())
+    enemies.append((h, a, d, s))
 
-# Count occurrences of each normalized rectangle
-from collections import defaultdict
-counts = defaultdict(int)
-for pair in normalized:
-    counts[pair] += 1
-
-# Check all counts are even
-for k in counts:
-    if counts[k] % 2 != 0:
-        print("no")
+# Check if any enemy cannot be killed
+for h, a, d, s in enemies:
+    delta = a0 - d
+    if delta <= 0 and h > 0:
+        print(-1)
         exit()
 
-# Check total number of pairs is 3
-total_pairs = sum(v // 2 f
+valid_enemies = []
+sum_part2 = 0
+
+for h, a, d, s in enemies:
+    delta = a0 - d
+    damage = max(a - d0, 0)
+    if damage == 0:
+        continue
+    k = (h + delta - 
