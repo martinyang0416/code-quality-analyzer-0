@@ -1,14 +1,23 @@
-def find_largest_number(Y):
-    if Y % 2 != 0:
-        return -1
-    for s in range(Y, -1, -2):
-        o = Y - s
-        if o >= 0 and o % 4 == 0:
-            return '7' * s + '1' * o
-    return -1
+MOD = 10**9 + 7
 
-T = int(input())
-for _ in range(T):
-    Y = int(input())
-    result = find_largest_number(Y)
-    print(result if result != -1 else -1)
+n, k = map(int, input().split())
+m = n + k - 1
+
+fact = [1] * (m + 1)
+for i in range(1, m + 1):
+    fact[i] = fact[i-1] * i % MOD
+
+inv_fact = [1] * (m + 1)
+inv_fact[m] = pow(fact[m], MOD - 2, MOD)
+for i in range(m - 1, -1, -1):
+    inv_fact[i] = inv_fact[i + 1] * (i + 1) % MOD
+
+if k == 0:
+    print(1)
+else:
+    if m < k:
+        print(0)
+    else:
+        res = fact[m] * inv_fact[k] % MOD
+        res = res * inv_fact[m - k] % MOD
+        print(res)
