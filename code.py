@@ -1,19 +1,15 @@
-import sys
+n = int(input())
+products = []
+sum_a = 0
+for _ in range(n):
+    a, b = map(int, input().split())
+    products.append((a, b))
+    sum_a += a
 
-def check_triple(x, y, z):
-    return not (x <= y <= z or x >= y >= z)
+sum_full = 0
+for a, b in products:
+    temp = b - (sum_a - a)
+    x = max(0, min(a, temp))
+    sum_full += x
 
-def is_valid_quadruple(a, b, c, d):
-    return (check_triple(a, b, c) and check_triple(a, b, d) and
-            check_triple(a, c, d) and check_triple(b, c, d))
-
-def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    n, q = int(input[ptr]), int(input[ptr+1])
-    ptr +=2
-    a = list(map(int, input[ptr:ptr+n]))
-    ptr +=n
-    for _ in range(q):
-        L = int(input[ptr])-1
-        R = int(input[ptr+1])
+print(sum_a + sum_full)
