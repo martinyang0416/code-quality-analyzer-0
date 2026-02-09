@@ -1,19 +1,15 @@
-def minCut(s):
-    n = len(s)
-    if n == 0:
-        return 0
-    # Precompute palindrome table
-    is_pal = [[False] * n for _ in range(n)]
-    for i in range(n-1, -1, -1):
-        for j in range(i, n):
-            if i == j:
-                is_pal[i][j] = True
-            elif j == i + 1:
-                is_pal[i][j] = (s[i] == s[j])
-            else:
-                is_pal[i][j] = (s[i] == s[j] and is_pal[i+1][j-1])
-    
-    # Compute minimum cuts
-    dp = [0] * n
-    for i in range(n):
-     
+import bisect
+
+class Solution:
+    def threeSumMulti(self, A: List[int], target: int) -> int:
+        MOD = 10**9 + 7
+        A.sort()
+        n = len(A)
+        count = 0
+        for i in range(n - 2):
+            for j in range(i + 1, n - 1):
+                required = target - A[i] - A[j]
+                left = bisect.bisect_left(A, required, j + 1, n)
+                right = bisect.bisect_right(A, required, j + 1, n)
+                count += right - left
+        return count % MOD
