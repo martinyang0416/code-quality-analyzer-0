@@ -1,25 +1,20 @@
+import math
+
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    N = int(input[ptr])
-    ptr += 1
-    M = float(input[ptr])
-    ptr += 1
-
-    cylinders = []
-
-    for _ in range(N):
-        K = int(input[ptr])
-        ptr += 1
-        for i in range(K):
-            S = float(input[ptr])
-            ptr += 1
-            H = float(input[ptr])
-            ptr += 1
-            cylinders.append((S, H))
-
-    # Sort by base area (S)
-    cylinders.sort(key=lambda x: x[0])
-
-    total_height
+    n = int(input())
+    nums = [int(input()) for _ in range(n)]
+    
+    non_zero = [x for x in nums if x != 0]
+    zeros = [x for x in nums if x == 0]
+    
+    # Custom key function for sorting
+    def sort_key(x):
+        if x == 0:
+            return (0, x)  # Not used here since non_zero has no zeros
+        return (-(math.log(x) / x), x)
+    
+    # Sort the non-zero elements
+    non_zero_sorted = sorted(non_zero, key=sort_key)
+    
+    # Combine and output
+    resu
