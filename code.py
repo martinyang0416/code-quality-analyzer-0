@@ -1,9 +1,22 @@
 n, m = map(int, input().split())
-bulbs = set()
+cyclic = [input().strip() for _ in range(n)]
+r, c = map(int, input().split())
+pattern = [input().strip() for _ in range(r)]
 
-for _ in range(n):
-    parts = list(map(int, input().split()))
-    if parts[0] > 0:
-        bulbs.update(parts[1:])
+constraints = []
+for x in range(r):
+    for y in range(c):
+        v = pattern[x][y]
+        if v != '?':
+            constraints.append((x, y, v))
 
-print("YES" if len(bulbs) == m else "NO")
+if not constraints:
+    for _ in range(n):
+        print('1' * m)
+    exit()
+
+result = [[1]*m for _ in range(n)]
+
+for dx, dy, v in constraints:
+    mask = [[0]*m for _ in range(n)]
+    for i in
