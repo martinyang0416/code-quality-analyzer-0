@@ -1,18 +1,10 @@
-def longestStrChain(words):
-    words = list(set(words))  # Remove duplicates
-    words.sort(key=lambda x: len(x))  # Sort by length
-    from collections import defaultdict
-
-    def is_predecessor(s, t):
-        if len(t) != len(s) + 1:
-            return False
-        for i in range(len(t)):
-            if t[:i] + t[i+1:] == s:
-                return True
-        return False
-
-    dp = defaultdict(int)
-    max_chain = 0
-    length_groups = defaultdict(list)
-    for word in words:
-        length
+def maxDistToClosest(seats):
+    occupied = [i for i, seat in enumerate(seats) if seat == 1]
+    left = occupied[0]
+    right = len(seats) - 1 - occupied[-1]
+    max_dist = max(left, right)
+    for i in range(1, len(occupied)):
+        distance = (occupied[i] - occupied[i-1]) // 2
+        if distance > max_dist:
+            max_dist = distance
+    return max_dist
