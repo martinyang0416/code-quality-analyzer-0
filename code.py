@@ -1,20 +1,17 @@
-from collections import defaultdict
-
-def findLatestStep(arr, m):
-    n = len(arr)
-    if m > n:
-        return -1
-    left_end = dict()
-    right_start = dict()
-    freq = defaultdict(int)
-    ans = -1
-    for i in range(n):
-        x = arr[i]
-        new_start = x
-        new_end = x
+def numTeams(rating):
+    n = len(rating)
+    total = 0
+    for j in range(1, n - 1):
+        left_small = left_large = 0
+        for i in range(j):
+            if rating[i] < rating[j]:
+                left_small += 1
+            elif rating[i] > rating[j]:
+                left_large += 1
         
-        # Check left neighbor
-        if (x - 1) in right_start:
-            left_group_start = right_start[x - 1]
-            left_group_end = x - 1
-            len_left = left_group_end - left_group_star
+        right_small = right_large = 0
+        for k in range(j + 1, n):
+            if rating[k] < rating[j]:
+                right_small += 1
+            elif rating[k] > rating[j]:
+                r
