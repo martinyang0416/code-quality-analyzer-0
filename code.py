@@ -1,20 +1,13 @@
-def maxScore(cardPoints, k):
-    n = len(cardPoints)
-    prefix = [0]
-    current_sum = 0
-    for i in range(k):
-        current_sum += cardPoints[i]
-        prefix.append(current_sum)
-    
-    suffix = [0]
-    current_sum = 0
-    for i in range(1, k + 1):
-        current_sum += cardPoints[-i]
-        suffix.append(current_sum)
-    
-    max_score = 0
-    for l in range(0, k + 1):
-        r = k - l
-        current = prefix[l] + suffix[r]
-        if current > max_score:
-            max_score = cur
+MOD = 10**9 + 7
+
+class Solution:
+    def profitableSchemes(self, G: int, P: int, group: List[int], profit: List[int]) -> int:
+        n = len(group)
+        # Initialize DP table. dp[j][k] represents the number of schemes using j members and at least k profit (capped at P)
+        dp = [[0] * (P + 1) for _ in range(G + 1)]
+        dp[0][0] = 1  # Base case: 0 members, 0 profit, 1 way
+        
+        for i in range(n):
+            current_g = group[i]
+            current_p = profit[i]
+          
