@@ -1,22 +1,22 @@
-import bisect
-
 def main():
     import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    N = int(input[ptr])
-    ptr += 1
-    a = list(map(int, input[ptr:ptr+N]))
-    ptr += N
-    S = sorted(a)
-    prefix = [0] * (N + 1)
-    for i in range(N):
-        prefix[i + 1] = prefix[i] + S[i]
-    T = 0
-    for i in range(N):
-        T += S[i] * (i + 1)
-    Q = int(input[ptr])
-    ptr += 1
-    for _ in range(Q):
-        i = int(input[ptr]) - 1  # Convert to 0-based index
-        j = int(input[ptr + 
+    s = sys.stdin.readline().strip()
+    n = len(s)
+    if n == 0:
+        print(0)
+        return
+
+    target = ['b', 'e', 's', 's', 'i', 'e']
+    progress = [0] * 6
+    count = 0
+    cnt = [0] * n
+
+    for i in range(n):
+        c = s[i]
+        for j in range(5, -1, -1):
+            if j == 0:
+                if c == target[0]:
+                    progress[0] += 1
+            else:
+                if c == target[j] and progress[j-1] > 0:
+                    progress
