@@ -1,26 +1,20 @@
-import bisect
+import sys
 from collections import deque
 
-n, k, l = map(int, input().split())
-x = list(map(int, input().split()))
-a_list = list(map(int, input().split()))
+n, m = map(int, sys.stdin.readline().split())
+adj = [[] for _ in range(n+1)]
+for u in range(1, n+1):
+    parts = list(map(int, sys.stdin.readline().split()))
+    ci = parts[0]
+    adj[u] = parts[1:ci+1]
 
-x.sort()
-x_set = set(x)
-unique_a = list(set(a_list))
+s = int(sys.stdin.readline())
 
-mask_set = set()
+terminal = [False] * (n+1)
+for u in range(1, n+1):
+    if len(adj[u]) == 0:
+        terminal[u] = True
 
-for a in unique_a:
-    if a > n:
-        continue
-    max_s = n - a + 1
-    if max_s < 1:
-        continue
-    for s in range(1, max_s + 1):
-        e = s + a - 1
-        if e > n:
-            continue
-        if s not in x_set or e not in x_set:
-            continue
- 
+# Step 1: BFS to find winning path
+visited = [[False]*(n+1) for _ in range(2)]
+prev = [[None]*(n+1) for _ in range(2)]
