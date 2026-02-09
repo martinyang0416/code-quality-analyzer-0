@@ -1,15 +1,17 @@
-def minFlipsMonoIncr(s: str) -> int:
-    n = len(s)
-    prefix_ones = [0] * (n + 1)
-    for i in range(1, n + 1):
-        prefix_ones[i] = prefix_ones[i - 1] + (1 if s[i - 1] == '1' else 0)
+def isRobotBounded(instructions):
+    # Directions: north, east, south, west
+    dirs = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+    x, y = 0, 0
+    current_dir = 0  # starts facing north
     
-    suffix_zeros = [0] * (n + 1)
-    for i in range(n - 1, -1, -1):
-        suffix_zeros[i] = suffix_zeros[i + 1] + (1 if s[i] == '0' else 0)
+    for c in instructions:
+        if c == 'G':
+            dx, dy = dirs[current_dir]
+            x += dx
+            y += dy
+        elif c == 'L':
+            current_dir = (current_dir - 1) % 4
+        elif c == 'R':
+            current_dir = (current_dir + 1) % 4
     
-    min_flips = float('inf')
-    for i in range(n + 1):
-        current = prefix_ones[i] + suffix_zeros[i]
-        if current < min_flips:
-            min_fli
+    # Check if back to origin or direct
