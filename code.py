@@ -1,21 +1,20 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(input[idx])
-        idx += 1
-        K = input[idx].strip()
-        idx += 1
-        mod = 0
-        for c in K:
-            mod = (mod * 10 + int(c)) % N
-        if mod == 0:
-            print(0)
-        else:
-            print(2 * min(mod, N - mod))
+import sys
+from collections import defaultdict
 
-if __name__ == "__main__":
-    main()
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr += 1
+    for _ in range(T):
+        N, K = int(input[ptr]), int(input[ptr+1])
+        ptr +=2
+        events = defaultdict(list)
+        for _ in range(N):
+            s = int(input[ptr])
+            e = int(input[ptr+1])
+            p = int(input[ptr+2])
+            ptr +=3
+            events[p].append((s, e))
+        total = 0
+        for room in events:
