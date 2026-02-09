@@ -1,6 +1,6 @@
 a1, a2, a3 = map(int, input().split())
-
-if a3 == 1:
-    print(a2)
-else:
-    print(a1 + a2 * (a3 - 1))
+terms = [a1, a2]
+for _ in range(a3 - 1):
+    next_term = terms[-1] + terms[-2]
+    terms.append(next_term)
+print(terms[-1])
