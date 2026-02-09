@@ -1,18 +1,17 @@
-import math
+def main():
+    import sys
 
-f0 = "What are you doing at the end of the world? Are you busy? Will you save us?"
-S1 = "What are you doing while sending "  # ends with a space
-S2 = " Are you busy? Will you send "      # starts with a space
+    fixed_A = "What are you doing while sending "  # length 34
+    fixed_B = " Are you busy? Will you send "      # length 29
+    f0 = "What are you doing at the end of the world? Are you busy? Will you save us?"  # length 75
 
-def is_k_within(n, k):
-    if k < 1:
-        return False
-    if n == 0:
-        return k <= len(f0)
-    required = (k + 68) / 143
-    if required <= 1:
-        return True
-    needed_exponent = math.ceil(math.log2(required))
-    return n >= needed_exponent
+    q = int(sys.stdin.readline())
+    output = []
 
-def get_char(n, k)
+    for _ in range(q):
+        n, k = map(int, sys.stdin.readline().split())
+        current_n = n
+        current_k = k
+        ans = '.'  # default if out of bounds
+
+        while current_n > 
