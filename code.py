@@ -1,19 +1,15 @@
-def maxRepOpt1(text):
-    from collections import defaultdict
-
-    # Split the text into groups of consecutive characters
-    groups = []
-    n = len(text)
-    if n == 0:
-        return 0
-    current_char = text[0]
-    start = 0
-    for i in range(1, n):
-        if text[i] != current_char:
-            groups.append((current_char, start, i - 1))
-            current_char = text[i]
-            start = i
-    groups.append((current_char, start, n - 1))
-
-    # Organize groups by character
-    char_gro
+def unhappyFriends(n, preferences, pairs):
+    # Create a dictionary to map each person to their partner
+    partner = {}
+    for a, b in pairs:
+        partner[a] = b
+        partner[b] = a
+    
+    # Precompute the index of each friend in the preferences list for quick lookup
+    prefs_index = [{} for _ in range(n)]
+    for i in range(n):
+        for idx, friend in enumerate(preferences[i]):
+            prefs_index[i][friend] = idx
+    
+    count = 0
+    # Check each person to see if they are 
