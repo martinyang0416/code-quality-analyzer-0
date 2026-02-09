@@ -1,20 +1,18 @@
-def minimal_array_length(test_cases):
-    for case in test_cases:
-        n, a = case
-        stack = []
-        for num in a:
-            stack.append(num)
-            while len(stack) >= 3:
-                if stack[-3] == stack[-1]:
-                    s = stack.pop()
-                    stack.pop()
-                    stack[-1] += s
-                else:
-                    break
-        print(len(stack))
+class DSU:
+    def __init__(self, size):
+        self.parent = list(range(size))
+        self.rank = [0] * size
 
-# Reading input
-t = int(input())
-test_cases = []
-for _ in range(t):
-    n = int(input()
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        x_root = self.find(x)
+        y_root = self.find(y)
+
+        if x_root == y_root:
+            return False  # no union performed
+        if self.rank[x_root] < self.rank[y_root]:
+            self.parent[x_root] 
