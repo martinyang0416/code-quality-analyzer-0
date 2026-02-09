@@ -1,7 +1,3 @@
-a1, a2, a3 = map(int, input().split())
-steps = a3 - 1
-first, second = a1, a2
-for _ in range(steps):
-    next_term = first + second
-    first, second = second, next_term
-print(second)
+s = input().strip()
+last_digit = int(s[-1])
+print(0 if last_digit % 2 == 0 else 1)
