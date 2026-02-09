@@ -1,16 +1,17 @@
-class Solution:
-    def longestConsecutive(self, nums: List[int]) -> int:
-        nums_set = set(nums)
-        max_length = 0
-        
-        for num in nums_set:
-            if num - 1 not in nums_set:
-                current_num = num
-                current_length = 1
-                
-                while current_num + 1 in nums_set:
-                    current_num += 1
-                    current_length += 1
-                
-                max_length = max(max_length, current_length)
-    
+def search(nums, target):
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+        if nums[left] <= nums[mid]:
+            if nums[left] <= target < nums[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        else:
+            if nums[mid] < target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
+    return -1
