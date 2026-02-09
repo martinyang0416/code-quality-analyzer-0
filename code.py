@@ -1,12 +1,10 @@
-def minFlips(a, b, c):
-    flips = 0
-    for i in range(31):
-        a_bit = (a >> i) & 1
-        b_bit = (b >> i) & 1
-        c_bit = (c >> i) & 1
-        if (a_bit | b_bit) != c_bit:
-            if c_bit == 1:
-                flips += 1
-            else:
-                flips += a_bit + b_bit
-    return flips
+def maxProduct(nums):
+    if not nums:
+        return 0
+    current_max = current_min = result = nums[0]
+    for num in nums[1:]:
+        temp_max = max(num, current_max * num, current_min * num)
+        temp_min = min(num, current_max * num, current_min * num)
+        current_max, current_min = temp_max, temp_min
+        result = max(result, current_max)
+    return result
