@@ -1,23 +1,23 @@
 import sys
-from collections import defaultdict
 
 def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    T = int(data[idx])
+    idx += 1
     for _ in range(T):
-        n = int(input[ptr])
-        m = int(input[ptr+1])
-        ptr +=2
-        if m == 0:
-            print(0)
-            ptr += 2*m
+        N, M = int(data[idx]), int(data[idx+1])
+        idx +=2
+        A = list(map(int, data[idx:idx+N]))
+        idx +=N
+        s = set(A)
+        valid = True
+        for x in range(1, M):
+            if x not in s:
+                valid = False
+                break
+        if not valid:
+            print(-1)
             continue
-        adj = defaultdict(set)
-        edges = []
-        for __ in range(m):
-            u = int(input[ptr])
-            v = int(input[ptr+1])
-            ptr +=2
-         
+        count
