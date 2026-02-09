@@ -1,6 +1,2 @@
-t = int(input())
-vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
-for _ in range(t):
-    word = input().strip()
-    collected = [c for c in word if c in vowels]
-    print(''.join(collected) if collected else "No")
+a, b = map(int, input().split())
+print("Even" if a % 2 == 0 or b % 2 == 0 else "Odd")
