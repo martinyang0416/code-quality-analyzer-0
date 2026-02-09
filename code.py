@@ -1,20 +1,18 @@
-def checkInclusion(s1: str, s2: str) -> bool:
-    n, m = len(s1), len(s2)
-    if n > m:
+def longestStrChain(words):
+    words = list(set(words))  # Remove duplicates
+    words.sort(key=lambda x: len(x))  # Sort by length
+    from collections import defaultdict
+
+    def is_predecessor(s, t):
+        if len(t) != len(s) + 1:
+            return False
+        for i in range(len(t)):
+            if t[:i] + t[i+1:] == s:
+                return True
         return False
-    
-    s1_counts = [0] * 26
-    window_counts = [0] * 26
-    
-    for i in range(n):
-        s1_counts[ord(s1[i]) - ord('a')] += 1
-        window_counts[ord(s2[i]) - ord('a')] += 1
-    
-    if s1_counts == window_counts:
-        return True
-    
-    for i in range(n, m):
-        outgoing = s2[i - n]
-        window_counts[ord(outgoing) - ord('a')] -= 1
-        incoming = s2[i]
-        wi
+
+    dp = defaultdict(int)
+    max_chain = 0
+    length_groups = defaultdict(list)
+    for word in words:
+        length
