@@ -1,25 +1,19 @@
-x, y, z = map(int, input().split())
-x1, y1, z1 = map(int, input().split())
-a1, a2, a3, a4, a5, a6 = map(int, input().split())
+def main():
+    import sys
+    n = int(sys.stdin.readline())
+    b = list(map(int, sys.stdin.readline().split()))
+    min_time = float('inf')
+    ans = -1
 
-total = 0
-
-# Check X-axis faces
-if x < 0:
-    total += a1
-elif x > x1:
-    total += a2
-
-# Check Y-axis faces
-if y < 0:
-    total += a3
-elif y > y1:
-    total += a4
-
-# Check Z-axis faces
-if z < 0:
-    total += a5
-elif z > z1:
-    total += a6
-
-print(total)
+    for s in range(n):
+        current_b = b[s]
+        if current_b <= s:
+            current_time = s
+        else:
+            delta = current_b - s
+            k = (delta + n - 1) // n  # ceiling(delta / n)
+            current_time = s + k * n
+        if current_time < min_time:
+            min_time = current_time
+            ans = s
+    
