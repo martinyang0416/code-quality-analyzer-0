@@ -1,17 +1,19 @@
-n, k = map(int, input().split())
-s = input().strip()
-sorted_values = sorted(ord(c) - ord('a') + 1 for c in s)
-INF = float('inf')
-dp = [[INF] * (k + 1) for _ in range(n)]
+import heapq
+from collections import defaultdict
 
-for i in range(n):
-    dp[i][1] = sorted_values[i]
-
-for j in range(2, k + 1):
-    for i in range(n):
-        for prev in range(i):
-            if sorted_values[i] - sorted_values[prev] >= 2:
-                if dp[prev][j-1] + sorted_values[i] < dp[i][j]:
-                    dp[i][j] = dp[prev][j-1] + sorted_values[i]
-
-min_total
+def main():
+    n, m, k, c, d = map(int, input().split())
+    a = list(map(int, input().split()))
+    streets = []
+    for _ in range(m):
+        x, y = map(int, input().split())
+        streets.append((x, y))
+    
+    directed_edges = defaultdict(list)
+    for x, y in streets:
+        directed_edges[x].append(y)
+        directed_edges[y].append(x)
+    
+    edge_counts = defaultdict(int)
+    total_discontent = 0
+    T_max = 200  # Sufficiently la
