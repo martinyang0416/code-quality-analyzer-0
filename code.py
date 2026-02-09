@@ -1,12 +1,27 @@
-n, m = map(int, input().split())
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
+n, s_x, s_y = map(int, input().split())
 
-even_a = sum(1 for num in a if num % 2 == 0)
-odd_a = len(a) - even_a
+east = 0
+west = 0
+north = 0
+south = 0
 
-even_b = sum(1 for num in b if num % 2 == 0)
-odd_b = len(b) - even_b
+for _ in range(n):
+    x, y = map(int, input().split())
+    if x > s_x:
+        east += 1
+    elif x < s_x:
+        west += 1
+    if y > s_y:
+        north += 1
+    elif y < s_y:
+        south += 1
 
-result = min(even_a, odd_b) + min(odd_a, even_b)
-print(result)
+max_count = max(east, west, north, south)
+directions = [
+    (east, (s_x + 1, s_y)),
+    (west, (s_x - 1, s_y)),
+    (north, (s_x, s_y + 1)),
+    (south, (s_x, s_y - 1)),
+]
+
+# Find the first direction with max_count and v
