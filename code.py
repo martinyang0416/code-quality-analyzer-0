@@ -1,23 +1,19 @@
 import sys
-from collections import deque
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def rotate_right(s, n):
-    last_bit = s & 1
-    s = (s >> 1) | (last_bit << (n - 1))
-    return s
-
-def main():
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    N = int(input[idx])
-    idx += 1
-
-    for _ in range(T):
-        lights_str = input[idx].strip()
-        switches_str = input[idx+1].strip()
-        idx += 2
-
-        # Reverse to treat as little-endian (LSB is first character of string)
-        lights_str
+import builtins
+import re
