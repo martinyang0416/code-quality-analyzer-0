@@ -1,16 +1,18 @@
+def sieve(n):
+    if n < 2:
+        return []
+    sieve_list = [True] * (n + 1)
+    sieve_list[0], sieve_list[1] = False, False
+    for i in range(2, int(n**0.5) + 1):
+        if sieve_list[i]:
+            sieve_list[i*i : n+1 : i] = [False] * len(sieve_list[i*i : n+1 : i])
+    primes = [i for i, is_prime in enumerate(sieve_list) if is_prime]
+    return primes
+
 def main():
     import sys
-    height = int(sys.stdin.readline().strip())
-    N = int(sys.stdin.readline().strip())
-    steps = list(map(int, sys.stdin.readline().strip().split()))
-    dp = [0] * (height + 1)
-    dp[0] = 1  # base case: one way to reach 0
-    
-    for i in range(1, height + 1):
-        for s in steps:
-            if i >= s:
-                dp[i] += dp[i - s]
-    print(dp[height])
-
-if __name__ == "__main__":
-    main()
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        C, D
