@@ -1,19 +1,27 @@
-n, k, m = map(int, input().split())
-coins = list(map(int, input().split()))
+import math
 
-max_total = float('-inf')
+def compute_gcd(arr):
+    current_gcd = arr[0]
+    for num in arr[1:]:
+        current_gcd = math.gcd(current_gcd, num)
+        if current_gcd == 1:
+            break
+    return current_gcd
 
-for L in range(0, k + 1):
-    for R in range(0, k - L + 1):
-        if L + R > n:
-            continue
-        if R == 0:
-            selected = coins[:L]
-        elif L == 0:
-            selected = coins[-R:]
-        else:
-            selected = coins[:L] + coins[-R:]
-        sum_total = sum(selected)
-        sorted_selected = sorted(selected)
-        x_max = min(m, len(sorted_selected))
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    n = int(input[0])
+    a = list(map(int, input[1:n+1]))
     
+    if n == 0:
+        print(0)
+        return
+    
+    g = compute_gcd(a)
+    
+    b = [num // g for num in a]
+    
+    if len(b) < 2:
+        print(0)
+        return
