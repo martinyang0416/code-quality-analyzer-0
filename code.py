@@ -1,18 +1,14 @@
-def maxSumTwoNoOverlap(A, L, M):
-    n = len(A)
-    prefix = [0] * (n + 1)
-    for i in range(n):
-        prefix[i+1] = prefix[i] + A[i]
-    
-    # Precompute max_m_after and max_l_after
-    max_m_after = [0] * n
-    for i in range(n - M, -1, -1):
-        current = prefix[i + M] - prefix[i]
-        if i == n - M:
-            max_m_after[i] = current
-        else:
-            max_m_after[i] = max(current, max_m_after[i+1])
-    
-    max_l_after = [0] * n
-    for i in range(n - L, -1, -1):
-        
+class Solution:
+    def totalNQueens(self, n: int) -> int:
+        def backtrack(row, cols, diag1, diag2):
+            if row == n:
+                return 1
+            count = 0
+            for col in range(n):
+                d1 = row - col
+                d2 = row + col
+                if col not in cols and d1 not in diag1 and d2 not in diag2:
+                    cols.add(col)
+                    diag1.add(d1)
+                    diag2.add(d2)
+                    count += backtrack(row + 1, 
