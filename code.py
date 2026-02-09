@@ -1,12 +1,20 @@
-def numOfSubarrays(arr, k, threshold):
-    target = threshold * k
+from collections import defaultdict
+
+def findLatestStep(arr, m):
     n = len(arr)
-    if n < k:
-        return 0
-    current_sum = sum(arr[:k])
-    count = 1 if current_sum >= target else 0
-    for i in range(k, n):
-        current_sum += arr[i] - arr[i - k]
-        if current_sum >= target:
-            count += 1
-    return count
+    if m > n:
+        return -1
+    left_end = dict()
+    right_start = dict()
+    freq = defaultdict(int)
+    ans = -1
+    for i in range(n):
+        x = arr[i]
+        new_start = x
+        new_end = x
+        
+        # Check left neighbor
+        if (x - 1) in right_start:
+            left_group_start = right_start[x - 1]
+            left_group_end = x - 1
+            len_left = left_group_end - left_group_star
