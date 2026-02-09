@@ -2,24 +2,20 @@ def main():
     import sys
     input = sys.stdin.read().split()
     idx = 0
-
-    target = "bessie"
-    L = len(target)
-    s = list(input[idx])
+    t = input[idx]
     idx += 1
     U = int(input[idx])
     idx += 1
-
     updates = []
     for _ in range(U):
-        p = int(input[idx])
+        p = int(input[idx]) - 1  # converting to 0-based
         c = input[idx+1]
-        updates.append((p-1, c))  # convert to 0-based
+        updates.append((p, c))
         idx += 2
 
-    def compute(s):
+    target = ['b', 'e', 's', 's', 'i', 'e']
+
+    def compute_A(s):
         n = len(s)
-        previous_count = [0] * (L + 1)
-        total = 0
-        for i in range(n):
-            curr
+        # Precompute for each position the state when starting there
+        # We can store for ea
