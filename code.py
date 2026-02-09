@@ -1,19 +1,15 @@
-import sys
-from collections import deque
+n = int(input())
+home = []
+away = []
+for _ in range(n):
+    h, a = map(int, input().split())
+    home.append(h)
+    away.append(a)
 
-def main():
-    lines = [line.strip() for line in sys.stdin if line.strip() != '']
-    idx = 0
-    t = int(lines[idx])
-    idx += 1
-    for _ in range(t):
-        k, n, m = map(int, lines[idx].split())
-        idx += 1
-        a = list(map(int, lines[idx].split()))
-        idx += 1
-        b = list(map(int, lines[idx].split()))
-        idx += 1
-        
-        zeros_a = [0] * (n + 1)
-        for i in range(1, n + 1):
-            zeros_a[i] = zeros_a[i -
+count = 0
+for i in range(n):
+    for j in range(n):
+        if i != j and home[i] == away[j]:
+            count += 1
+
+print(count)
