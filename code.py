@@ -1,18 +1,27 @@
-import sys
-from functools import lru_cache
+s = input().strip()
+open_count = s.count('(')
+close_count = s.count(')')
+hashtags = [i for i, c in enumerate(s) if c == '#']
+k = len(hashtags)
+if k == 0:
+    print(-1)
+    exit()
 
-n = int(sys.stdin.readline())
-grid = [sys.stdin.readline().strip() for _ in range(n)]
+required = open_count - close_count
+if required < k or open_count < close_count:
+    print(-1)
+    exit()
 
-@lru_cache(maxsize=None)
-def dfs(r, c, d):
-    if r == n and c == n:
-        return d
-    current_player = (r + c) % 2
-    moves = []
-    if r < n:
-        next_char = grid[r][c-1]  # (r+1, c) in 1-based -> grid[r][c-1] in 0-based
-        delta = 1 if next_char == 'a' else (-1 if next_char == 'b' else 0)
-        moves.append(dfs(r + 1, c, d + delta))
-    if c < n:
-  
+assignments = [1] * (k-1) + [required - (k-1)]
+if assignments[-1] < 1:
+    print(-1)
+    exit()
+
+current_assignment = 0
+balance = 0
+possible = True
+
+for c in s:
+    if c == '(':
+        balance += 1
+    elif c == 
