@@ -1,6 +1,3 @@
 a = int(input())
-e = a.bit_length() - 1
-if 2 ** e == a:
-    print(e)
-else:
-    print(e + 1)
+sum_digits = sum(int(d) for d in str(a))
+print("YES" if sum_digits % 5 == 0 else "NO")
