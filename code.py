@@ -1,20 +1,26 @@
-import sys
-from collections import defaultdict
+import bisect
+from collections import deque
 
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    rows = [sys.stdin.readline().strip() for _ in range(n)]
-    
-    freq = defaultdict(int)
-    for j in range(m):
-        c = 0
-        for i in range(n):
-            if rows[i][j] == '1':
-                c |= 1 << i
-        freq[c] += 1
-    
-    max_mask = (1 << n) - 1
-    bit_count = [0] * (max_mask + 1)
-    for x in range(max_mask + 1):
-        bit_count[x] = bin(x).count('1')
-    
+n, k, l = map(int, input().split())
+x = list(map(int, input().split()))
+a_list = list(map(int, input().split()))
+
+x.sort()
+x_set = set(x)
+unique_a = list(set(a_list))
+
+mask_set = set()
+
+for a in unique_a:
+    if a > n:
+        continue
+    max_s = n - a + 1
+    if max_s < 1:
+        continue
+    for s in range(1, max_s + 1):
+        e = s + a - 1
+        if e > n:
+            continue
+        if s not in x_set or e not in x_set:
+            continue
+ 
