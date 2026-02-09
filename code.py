@@ -1,22 +1,16 @@
-mod = 10**9 + 7
+m, n = map(int, input().split())
+k = int(input())
+grid = [input().strip() for _ in range(m)]
 
-n, m = map(int, input().split())
-x = list(map(int, input().split()))
-y = list(map(int, input().split()))
+prefix_j = [[0]*(n+1) for _ in range(m+1)]
+prefix_o = [[0]*(n+1) for _ in range(m+1)]
+prefix_i = [[0]*(n+1) for _ in range(m+1)]
 
-# Calculate sum for x coordinates
-sum_x = 0
-prefix_sum = [0] * n
-for i in range(1, n):
-    prefix_sum[i] = prefix_sum[i-1] + x[i-1]
-for j in range(1, n):
-    sum_x += x[j] * j - prefix_sum[j]
-sum_x %= mod
-
-# Calculate sum for y coordinates
-sum_y = 0
-prefix_sum_y = [0] * m
-for i in range(1, m):
-    prefix_sum_y[i] = prefix_sum_y[i-1] + y[i-1]
-for j in range(1, m):
-    sum_y +
+for i in range(1, m+1):
+    for j in range(1, n+1):
+        current = grid[i-1][j-1]
+        j_val = 1 if current == 'J' else 0
+        o_val = 1 if current == 'O' else 0
+        i_val = 1 if current == 'I' else 0
+        
+        prefix_j[i][j] = prefix_j[i-1][j] + prefix_j[
