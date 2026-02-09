@@ -1,15 +1,22 @@
+import bisect
 import sys
 
 def main():
-    N, K, T = map(int, sys.stdin.readline().split())
-    A = list(map(int, sys.stdin.readline().split()))
-    T = T % N  # Reduce T using the periodicity
+    sys.setrecursionlimit(1 << 25)
+    N, Q = map(int, sys.stdin.readline().split())
+    s = sys.stdin.readline().strip()
+    spec = sys.stdin.readline().strip()
 
-    current = list(range(N))  # current[pos] is the cow at position pos
+    # Read L and R positions
+    L_pos = []
+    R_pos = []
+    for idx in range(len(s)):
+        if s[idx] == 'L':
+            L_pos.append(idx + 1)  # 1-based
+        else:
+            R_pos.append(idx + 1)
 
-    for step in range(T):
-        active = [(A[i] + step) % N for i in range(K)]
-        # Extract the cows in these active positions
-        cows = [current[a] for a in active]
-        # Rotate right by one: last element comes first
-        rotate
+    # Compute ℓ and r arrays (1-based)
+    ell = [0] * (N + 1)
+    r = [0] * (N + 1)
+    f
