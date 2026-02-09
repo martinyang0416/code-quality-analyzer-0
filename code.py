@@ -1,28 +1,21 @@
-import sys
-sys.setrecursionlimit(1 << 25)
-MOD = 10**9 + 7
+import heapq
+import math
 
 def main():
-    import sys
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    N = int(data[idx])
-    idx +=1
-    M = int(data[idx])
-    idx +=1
-
-    edges = []
-    for _ in range(M):
-        u = int(data[idx])
-        idx +=1
-        v = int(data[idx])
-        idx +=1
-        c = int(data[idx])
-        idx +=1
-        edges.append( (c, u-1, v-1) )
-
-    # Sort edges by cost
-    edges.sort()
+    n = int(input())
+    d, alpha_deg = map(float, input().split())
+    points = []
+    for _ in range(n):
+        x, y = map(int, input().split())
+        points.append((x, y))
     
-    # Group edges by cos
+    max_count = 1
+    heap = []
+    best_states = {}
+    
+    # Initialize the starting point (current=0, prev=None, distance=0, count=1)
+    start_current = 0
+    start_prev = None
+    start_dist = 0.0
+    start_count = 1
+    heapq.heappush(heap, (-start_count, start_dist, star
