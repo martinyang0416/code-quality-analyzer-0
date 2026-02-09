@@ -1,22 +1,20 @@
-from collections import deque
+import sys
 
-n, m = map(int, input().split())
-p = list(map(int, input().split()))
-target = p[-1]
-
-# Build reversed adjacency list
-adj_reversed = [[] for _ in range(n + 1)]
-for _ in range(m):
-    u, v = map(int, input().split())
-    adj_reversed[v].append(u)
-
-# BFS to find reachable nodes in reversed graph
-reachable = [False] * (n + 1)
-q = deque([target])
-reachable[target] = True
-
-while q:
-    u = q.popleft()
-    for v in adj_reversed[u]:
-        if not reachable[v]:
-           
+def main():
+    lines = [line.strip() for line in sys.stdin if line.strip()]
+    ptr = 0
+    n, m, k = map(int, lines[ptr].split())
+    ptr += 1
+    
+    sections = []
+    for _ in range(6):
+        section = []
+        cnt = m if _ < 2 else n if _ < 4 else n
+        for __ in range(cnt):
+            section.append(list(map(int, lines[ptr].split())))
+            ptr += 1
+        sections.append(section)
+    
+    grid = [[[0]*k for _ in range(m)] for __ in range(n)]
+    
+    def proce
