@@ -8,16 +8,15 @@ def main():
     ptr += 1
     a = list(map(int, input[ptr:ptr+N]))
     ptr += N
+    S = sorted(a)
+    prefix = [0] * (N + 1)
+    for i in range(N):
+        prefix[i + 1] = prefix[i] + S[i]
+    T = 0
+    for i in range(N):
+        T += S[i] * (i + 1)
     Q = int(input[ptr])
     ptr += 1
-    queries = []
     for _ in range(Q):
-        i = int(input[ptr])
-        j = int(input[ptr+1])
-        queries.append((i, j))
-        ptr += 2
-
-    # Prepare the initial sorted array and prefix sums
-    S = sorted(a, reverse=True)
-    prefix = [0] * (N + 1)
-    for i in range(N
+        i = int(input[ptr]) - 1  # Convert to 0-based index
+        j = int(input[ptr + 
