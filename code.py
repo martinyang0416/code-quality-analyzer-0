@@ -1,22 +1,17 @@
-n = int(input())
-x = list(map(int, input().split()))
-v = list(map(int, input().split()))
+def generate_all_pairings():
+    nums = [1, 2, 3, 4, 5, 6]
+    all_pairings = []
 
-robots = sorted(zip(x, v), key=lambda r: r[0])
+    def backtrack(remaining, current):
+        if not remaining:
+            all_pairings.append(current.copy())
+            return
+        first = remaining[0]
+        for i in range(1, len(remaining)):
+            pair = (first, remaining[i])
+            new_remaining = remaining[1:i] + remaining[i+1:]
+            current.append(pair)
+            backtrack(new_remaining, current)
+            current.pop()
 
-low = robots[0][0]
-high = robots[-1][0]
-
-epsilon = 1e-12
-iterations = 100
-
-for _ in range(iterations):
-    if high - low < epsilon:
-        break
-    mid1 = low + (high - low) / 3
-    mid2 = high - (high - low) / 3
-    f1 = max(abs(xi - mid1) / vi for xi, vi in robots)
-    f2 = max(abs(xi - mid2) / vi for xi, vi in robots)
-    if f1 < f2:
-        high = mid2
- 
+    ba
