@@ -1,17 +1,16 @@
-n = int(input())
-s = input().strip()
+n, k = map(int, input().split())
+ids = list(map(int, input().split()))
 
-for i in range(n):
-    if s[i] == '*':
-        max_d = (n - 1 - i) // 4
-        for d in range(1, max_d + 1):
-            valid = True
-            for k in range(5):
-                pos = i + k * d
-                if pos >= n or s[pos] != '*':
-                    valid = False
-                    break
-            if valid:
-                print("yes")
-                exit()
-print("no")
+low, high = 1, n
+while low < high:
+    mid = (low + high) // 2
+    s = mid * (mid + 1) // 2
+    if s >= k:
+        high = mid
+    else:
+        low = mid + 1
+
+m = low
+sum_prev = (m - 1) * m // 2
+index = k - sum_prev - 1
+print(ids[index])
