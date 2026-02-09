@@ -1,3 +1,3 @@
-Okay, let's see. The problem is to take an integer a between 1 and 30 and output another integer. The example given is input 3 outputs 27. Hmm, 3 cubed is 27. Oh right, maybe the problem is just to compute a cubed? But wait, let me think again. Let me check other possible patterns. Like, maybe it's a factorial? But 3 factorial is 6, not 27. So no. So the example fits with a^3.
+Okay, let's see. The problem is to take an integer a between 1 and 30 and output another integer. The example given is input 3 outputs 27. Hmm, wait, 3 cubed is 27. So maybe the task is just to compute a cubed? That seems straightforward. But let me think again. Are there any other possibilities? Let's check another example. Like if a is 4, then output would be 64? Or maybe something else? Well, the problem statement is brief. Let me read it again.
 
-So the task is probably to compute a cubed. Then the output is simply a multiplied by itself three times. So for input 
+The input is a single integer a, and the outpu
