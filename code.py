@@ -1,28 +1,18 @@
-import numpy as np
-
 n = int(input())
-a = list(map(int, input().split()))
+arr = list(map(int, input().split()))
+stack = []
+max_step = 0
 
-if n == 1:
-    exit()
+for num in arr:
+    current_step = 0
+    while stack and stack[-1][0] < num:
+        current_step = max(current_step, stack.pop()[1])
+    if stack:
+        current_step += 1
+    else:
+        current_step = 0
+    stack.append((num, current_step))
+    if current_step > max_step:
+        max_step = current_step
 
-bits = [0] * (n - 1)
-for d in range(1, n):
-    bits[d-1] = bin(d).count('1')
-
-a_np = np.array(a, dtype=np.float64)
-bits_np = np.array(bits, dtype=np.float64)
-
-size = 1
-while size < len(a_np) + len(bits_np) - 1:
-    size <<= 1
-
-fft_a = np.fft.fft(a_np, size)
-fft_bits = np.fft.fft(bits_np, size)
-
-fft_conv = fft_a * fft_bits
-conv = np.fft.ifft(fft_conv).real
-
-result = []
-for k in range(1, n):
-    index 
+print(max_step)
