@@ -1,9 +1,24 @@
-t = int(input())
-for _ in range(t):
-    n = int(input())
-    s = input().strip()
-    first_gt = s.find('>')
-    last_lt = s.rfind('<')
-    left = first_gt if first_gt != -1 else float('inf')
-    right = (n - 1 - last_lt) if last_lt != -1 else float('inf')
-    print(min(left, right))
+MOD = 998244353
+
+n = int(input())
+primes = list(map(int, input().split()))
+
+from collections import defaultdict
+count = defaultdict(int)
+for p in primes:
+    count[p] += 1
+
+exponents = list(count.values())
+sum_e = sum(exponents)
+s = sum_e // 2
+
+result = 1
+for e in exponents:
+    lower = max(0, s - (sum_e - e))
+    upper = min(e, s)
+    if upper < lower:
+        result = 0
+        break
+    result = (result * (upper - lower + 1)) % MOD
+
+print(result)
