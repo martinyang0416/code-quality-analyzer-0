@@ -1,14 +1,17 @@
-import sys
+from collections import defaultdict
 
-t = int(sys.stdin.readline())
-for _ in range(t):
-    n = int(sys.stdin.readline())
-    a = list(map(int, sys.stdin.readline().split()))
-    found = False
-    for k in range(2, n):
-        if a[0] + a[1] <= a[k]:
-            print(1, 2, k+1)
-            found = True
-            break
-    if not found:
-        print(-1)
+s = input().strip()
+counts = defaultdict(int)
+month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+for i in range(len(s) - 9):
+    substring = s[i:i+10]
+    if substring[2] != '-' or substring[5] != '-':
+        continue
+    day_part = substring[:2]
+    month_part = substring[3:5]
+    year_part = substring[6:10]
+    if not (day_part.isdigit() and month_part.isdigit() and year_part.isdigit()):
+        continue
+    day = int(day_part)
+    month = int(
