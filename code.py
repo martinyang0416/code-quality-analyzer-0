@@ -1,13 +1,17 @@
 MOD = 10**9 + 7
 
 class Solution:
-    def rangeSum(self, nums: List[int], n: int, left: int, right: int) -> int:
-        sub_sums = []
-        for i in range(n):
-            current_sum = 0
-            for j in range(i, n):
-                current_sum += nums[j]
-                sub_sums.append(current_sum)
-        sub_sums.sort()
-        total = sum(sub_sums[left-1:right])
-        return total % MOD
+    def numWays(self, steps: int, arrLen: int) -> int:
+        max_pos = min(arrLen - 1, steps)
+        prev = [0] * (max_pos + 1)
+        prev[0] = 1
+        
+        for _ in range(steps):
+            current = [0] * (max_pos + 1)
+            for j in range(max_pos + 1):
+                current[j] = prev[j]
+                if j > 0:
+                    current[j] += prev[j - 1]
+                if j < max_pos:
+                    current[j] += prev[j + 1]
+      
