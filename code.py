@@ -1,15 +1,12 @@
-def monotoneIncreasingDigits(N):
-    digits = list(str(N))
-    n = len(digits)
-    i = 0
-    # Find the first index where digits[i] > digits[i+1]
-    while i < n - 1 and digits[i] <= digits[i + 1]:
-        i += 1
-    if i == n - 1:
-        return int(''.join(digits))
-    # Backtrack to the left for equal digits
-    while i > 0 and digits[i - 1] == digits[i]:
-        i -= 1
-    # Decrease the current digit and set the rest to '9'
-    digits[i] = str(int(digits[i]) - 1)
-    for j in range(i + 1, n
+def longestPrefix(s: str) -> str:
+    n = len(s)
+    pi = [0] * n
+    for i in range(1, n):
+        j = pi[i-1]
+        while j > 0 and s[i] != s[j]:
+            j = pi[j-1]
+        if s[i] == s[j]:
+            j += 1
+        pi[i] = j
+    max_len = pi[-1]
+    return s[:max_len] if max_len > 0 else ""
