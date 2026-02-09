@@ -1,26 +1,19 @@
-import bisect
+import sys
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    d = int(input[ptr])
-    ptr +=1
-    n = int(input[ptr])
-    m = int(input[ptr+1])
-    ptr +=2
+    n, m = map(int, sys.stdin.readline().split())
+    drinks = list(map(int, sys.stdin.readline().split()))
+    guests = []
+    for i in range(m):
+        x, y = map(int, sys.stdin.readline().split())
+        guests.append((x-1, y-1))  # Convert to 0-based indices
 
-    points = []
-    for _ in range(d):
-        x = int(input[ptr])
-        y = int(input[ptr+1])
-        points.append( (x, y) )
-        ptr +=2
+    # Track forced guests and their choices
+    forced = [False] * m
+    chosen = [None] * m
+    remaining = drinks.copy()
+    possible = True
 
-    cnt_left = int(input[ptr])
-    cnt_right = int(input[ptr+1])
-    cnt_top = int(input[ptr+2])
-    cnt_bottom = int(input[ptr+3])
-    ptr +=4
-
-    # Create set of
+    for idx in range(m):
+        x, y = guests[idx]
+        a_zero
