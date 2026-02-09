@@ -1,24 +1,15 @@
-def main():
-    import sys
-    s = sys.stdin.read().strip()
-    target = 'bessie'
-    m = len(target)  # 6
-    n = len(s)
-    
-    dp = [0] * (m + 1)
-    dp[0] = 1  # Base case: empty string matches the first 0 characters
-    
-    total = 0
-    
-    for c in s:
-        new_dp = dp.copy()
-        for i in range(m, 0, -1):
-            if c == target[i-1]:
-                new_dp[i] += new_dp[i-1]
-        dp = new_dp
-        total += dp[m]
-    
-    print(total)
+import sys
 
-if __name__ == "__main__":
-    main()
+def main():
+    N, K, T = map(int, sys.stdin.readline().split())
+    A = list(map(int, sys.stdin.readline().split()))
+    T = T % N  # Reduce T using the periodicity
+
+    current = list(range(N))  # current[pos] is the cow at position pos
+
+    for step in range(T):
+        active = [(A[i] + step) % N for i in range(K)]
+        # Extract the cows in these active positions
+        cows = [current[a] for a in active]
+        # Rotate right by one: last element comes first
+        rotate
