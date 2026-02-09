@@ -1,20 +1,17 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    n = int(input[idx]); idx +=1
-    m = int(input[idx]); idx +=1
-    k = int(input[idx]); idx +=1
+HPY, ATKY, DEFY = map(int, input().split())
+HPM, ATKM, DEFM = map(int, input().split())
+h_price, a_price, d_price = map(int, input().split())
 
-    vertical_cuts = set()
-    horizontal_cuts = set()
+min_cost = float('inf')
 
-    for _ in range(k):
-        x1 = int(input[idx]); y1 = int(input[idx+1]); x2 = int(input[idx+2]); y2 = int(input[idx+3])
-        idx +=4
-        if x1 == x2:
-            vertical_cuts.add(x1)
-        else:
-            horizontal_cuts.add(y1)
-
-    def compute_interva
+a_min = max(0, DEFM - ATKY + 1)
+for a_add in range(a_min, a_min + 201):
+    atky_new = ATKY + a_add
+    dy = atky_new - DEFM
+    if dy <= 0:
+        continue
+    t = (HPM + dy - 1) // dy
+    d_max = max(0, ATKM - DEFY) + 200
+    for d_add in range(0, d_max + 1):
+        defy_new = DEFY + d_add
+        dm = max(0, ATKM - defy_new)
