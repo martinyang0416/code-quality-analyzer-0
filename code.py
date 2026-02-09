@@ -1,19 +1,22 @@
-import sys
-from collections import deque
+import bisect
 
 def main():
-    sys.setrecursionlimit(1 << 25)
-    N = int(sys.stdin.readline())
-    s = sys.stdin.readline().strip()
-    edges = [[] for _ in range(N)]
-    for _ in range(N-1):
-        a, b = map(int, sys.stdin.readline().split())
-        edges[a-1].append(b-1)
-        edges[b-1].append(a-1)
+    import sys
+    input = sys.stdin.read().split()
+    n = int(input[0])
+    a = list(map(int, input[1:n+1]))
     
-    # Find all groups (connected components of required nodes)
-    group_of = [-1] * N
-    current_group = 0
-    groups = []
-    visited = [False] * N
-    for 
+    prefix = [0] * (n + 1)
+    for i in range(n):
+        prefix[i+1] = prefix[i] + a[i]
+    
+    subarrays = []
+    for s in range(1, n+1):
+        for e in range(s, n+1):
+            val = prefix[e] - prefix[s-1]
+            subarrays.append( (s, e, val) )
+    
+    for i in range(1, n+1):
+        S = []
+        T = []
+        for (s, e, val) in subarray
