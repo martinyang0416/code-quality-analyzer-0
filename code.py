@@ -1,17 +1,21 @@
-def build_transition(pattern):
-    len_p = len(pattern)
-    failure = [0] * len_p
-    for i in range(1, len_p):
-        j = failure[i-1]
-        while j > 0 and pattern[i] != pattern[j]:
-            j = failure[j-1]
-        if pattern[i] == pattern[j]:
-            j += 1
-        failure[i] = j
-    transition = [[0]*26 for _ in range(len_p + 1)]
-    for state in range(len_p + 1):
-        for c in range(26):
-            char = chr(ord('a') + c)
-            j = state
-            while True:
-       
+import sys
+from collections import deque
+
+MOD = 10**9 + 7
+
+def main():
+    n = int(sys.stdin.readline())
+    values = list(map(int, sys.stdin.readline().split()))
+    edges = [[] for _ in range(n+1)]  # 1-based indexing
+    for _ in range(n-1):
+        a, b = map(int, sys.stdin.readline().split())
+        edges[a].append(b)
+        edges[b].append(a)
+    
+    # BFS to find parent and order
+    visited = [False] * (n + 1)
+    parent = [0] * (n + 1)
+    order = []
+    q = deque()
+    q.append(1)
+ 
