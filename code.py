@@ -1,21 +1,22 @@
 import sys
-MOD = 10**9 + 7
+from itertools import combinations
 
 def main():
-    N, M = map(int, sys.stdin.readline().split())
+    C, N = map(int, sys.stdin.readline().split())
     masks = []
-    for _ in range(M):
+    mask_set = set()
+
+    for _ in range(N):
         s = sys.stdin.readline().strip()
-        masks.append(s)
-    
-    problem_masks = []
-    for i in range(N):
-        current_mask = 0
-        for m in range(M):
-            if masks[m][i] == 'H':
-                current_mask |= 1 << m
-        problem_masks.append(current_mask)
-    
-    from collections import defaultdict
-    cnt = defaultdict(int)
-    for m in pr
+        mask = 0
+        for c in s:
+            mask = (mask << 1) | (1 if c == 'H' else 0)
+        masks.append(mask)
+        mask_set.add(mask)
+
+    max_distances = []
+
+    for a in masks:
+        complement = ((1 << C) - 1) ^ a
+        if complement in mask_set:
+            max_distanc
