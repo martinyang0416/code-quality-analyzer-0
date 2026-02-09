@@ -1,20 +1,15 @@
-import sys
-
-def main():
-    t = int(sys.stdin.readline())
-    for _ in range(t):
-        n = int(sys.stdin.readline())
-        arr = list(map(int, sys.stdin.readline().split()))
-        if n <= 2:
-            print(n)
-            continue
-        max_len = 2
-        for i in range(n - 1):
-            a = arr[i]
-            b = arr[i+1]
-            current_len = 2
-            j = i + 2
-            while j < n:
-                c = a + b
-                if arr[j] == c:
-                    current_l
+class SegmentTree:
+    def __init__(self, data):
+        self.n = len(data)
+        self.size = 1
+        while self.size < self.n:
+            self.size <<= 1
+        self.tree = [ -float('inf') ] * (2 * self.size)
+        for i in range(self.n):
+            self.tree[self.size + i] = data[i]
+        for i in range(self.size -1, 0, -1):
+            self.tree[i] = max(self.tree[2*i], self.tree[2*i +1])
+    
+    def update(self, pos, value):
+        pos += self.size
+        self.tree[pos] = value
