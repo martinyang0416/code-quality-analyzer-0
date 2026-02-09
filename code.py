@@ -1,23 +1,14 @@
-import sys
-from collections import deque
-
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    adj = [[] for _ in range(n + 1)]
-    in_deg = [0] * (n + 1)
+def find_prime_pair(m):
+    # Sieve of Eratosthenes to find all primes up to m
+    sieve = [True] * (m + 1)
+    sieve[0] = sieve[1] = False
+    for i in range(2, int(m ** 0.5) + 1):
+        if sieve[i]:
+            sieve[i*i : m+1 : i] = [False] * len(sieve[i*i : m+1 : i])
     
-    for _ in range(m):
-        u, v, w = map(int, sys.stdin.readline().split())
-        adj[u].append((v, w))
-        in_deg[v] += 1
-    
-    q = deque()
-    for i in range(1, n + 1):
-        if in_deg[i] == 0:
-            q.append(i)
-    
-    topo_order = []
-    while q:
-        u = q.popleft()
-        topo_order.append(u)
- 
+    # Find the first pair (a, b) such that a + b = m and both are primes
+    for a in range(2, m // 2 + 1):
+        b = m - a
+        if sieve[a] and sieve[b]:
+            return (a, b)
+    return (None, None)  # This lin
