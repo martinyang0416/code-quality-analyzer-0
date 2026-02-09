@@ -1,12 +1,19 @@
-# Read the input string
-S = input().strip()
+import itertools
 
-# Define the mirror mappings
-mirror = {'b': 'd', 'd': 'b', 'p': 'q', 'q': 'p'}
-
-# Reverse the string and replace each character with its mirror
-reversed_S = S[::-1]
-transformed = ''.join([mirror[c] for c in reversed_S])
-
-# Check if the transformed string equals the original
-print("Yes" if transformed == S else "No")
+while True:
+    n, k, s = map(int, input().split())
+    if n == 0 and k == 0 and s == 0:
+        break
+    if k > n or k == 0:
+        print(0)
+        continue
+    min_sum = k * (k + 1) // 2
+    max_sum = k * (2 * n - k + 1) // 2
+    if s < min_sum or s > max_sum:
+        print(0)
+        continue
+    count = 0
+    for comb in itertools.combinations(range(1, n + 1), k):
+        if sum(comb) == s:
+            count += 1
+    print(count)
