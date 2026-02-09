@@ -1,30 +1,22 @@
-# Precompute the factorial values up to 10! since L can be at most 10
-fact = [1] * (11)
-for i in range(1, 11):
-    fact[i] = fact[i-1] * i
-
-# LED counts for each digit
-digit_led = {
-    0: 6,
-    1: 2,
-    2: 5,
-    3: 5,
-    4: 4,
-    5: 5,
-    6: 6,
-    7: 3,
-    8: 7,
-    9: 6
-}
-
-def solve():
+def main():
     import sys
     input = sys.stdin.read().split()
-    T = int(input[0])
-    idx = 1
+    idx = 0
+    T = int(input[idx])
+    idx += 1
     for _ in range(T):
-        L = int(input[idx])
-        M = int(input[idx+1])
+        N = int(input[idx])
+        K = int(input[idx + 1])
         idx += 2
-        
-        to
+        if K > 81:
+            print(-1)
+            continue
+        index = K - 1
+        a = (index // 9) + 1
+        idx_in_group = index % 9
+        sorted_b = []
+        if 0 != a:
+            sorted_b.append(0)
+        for x in range(1, 10):
+            if x != a:
+               
