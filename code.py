@@ -1,24 +1,19 @@
 import sys
+from collections import defaultdict
 
-def solve():
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(input[idx])
-        K = int(input[idx+1])
-        M = int(input[idx+2])
-        X0 = int(input[idx+3])  # not used
-        idx +=4
-        
-        if K == 1:
-            if M == N:
-                print("yes")
-            else:
-                print("no")
-            continue
-        
-        possible = False
-        for c0 in [0, 1]:
-            
+def main():
+    t = int(sys.stdin.readline())
+    for _ in range(t):
+        n = int(sys.stdin.readline())
+        a = list(map(int, sys.stdin.readline().split()))
+        d = defaultdict(set)
+        found = False
+        for x in a:
+            mapped_val = a[x-1]
+            d[mapped_val].add(x)
+            if len(d[mapped_val]) >= 2:
+                found = True
+                break
+        print("Truly Happy" if found else "Poor Chef")
+
+if __
