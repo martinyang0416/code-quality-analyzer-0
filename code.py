@@ -1,25 +1,19 @@
-def readln(): return map(int, input().rstrip().split())
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-
-data = {}
-n = int(input())
-for i in range(1, n + 1):
-    data[i] = []
-for i in range(0, n - 1):
-    u, v = readln()
-    data[u].append(v)
-    data[v].append(u)
-
-l = [0, 0]
-visited = [False] * (n + 1)
-
-stk = [(1, 0)]
-while stk:
-    u = stk.pop()
-    visited[u[0]] = True
-    l[u[1]] += 1
-    for i in data[u[0]]:
-        if not visited[i]:
-            stk.append((i, 1 - u[1]))
-
-print(l[0] * l[1] - (n - 1))
+import builtins
+import re
