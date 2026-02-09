@@ -1,20 +1,16 @@
-def main():
-    import sys
-    n = int(sys.stdin.readline())
-    adj = [[] for _ in range(n + 1)]
-    for _ in range(n):
-        a, b = map(int, sys.stdin.readline().split())
-        adj[a].append(b)
-        adj[b].append(a)
-    
-    # Check if each node has exactly two neighbors
-    for i in range(1, n + 1):
-        if len(adj[i]) != 2:
-            print(-1)
-            return
-    
-    sequence = [1]
-    current = 1
-    prev = -1  # Indicates no previous node at the start
-    
-    for _ in rang
+import bisect
+
+n = int(input())
+t = list(map(int, input().split()))
+t.sort()
+max_len = 0
+
+for i in range(n):
+    a = t[i]
+    b = a + 2
+    j = bisect.bisect_right(t, b)
+    current_len = j - i
+    if current_len > max_len:
+        max_len = current_len
+
+print(max_len)
