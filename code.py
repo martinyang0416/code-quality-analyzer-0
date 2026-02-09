@@ -1,19 +1,24 @@
-import itertools
+initial_elements = list(map(int, input().split()))
 
-while True:
-    n, k, s = map(int, input().split())
-    if n == 0 and k == 0 and s == 0:
-        break
-    if k > n or k == 0:
-        print(0)
+blocks = []
+current_size = 0
+
+for num in reversed(initial_elements):
+    current_size += 1
+    if blocks and blocks[0][0] == num:
+        blocks[0] = (num, blocks[0][1] + 1)
+    else:
+        blocks.insert(0, (num, 1))
+
+import sys
+
+for line in sys.stdin:
+    line = line.strip()
+    if not line:
         continue
-    min_sum = k * (k + 1) // 2
-    max_sum = k * (2 * n - k + 1) // 2
-    if s < min_sum or s > max_sum:
-        print(0)
-        continue
-    count = 0
-    for comb in itertools.combinations(range(1, n + 1), k):
-        if sum(comb) == s:
-            count += 1
-    print(count)
+    parts = line.split()
+    if parts[0] == 'L':
+        X = int(parts[1])
+        Y = int(parts[2])
+        current_size += X
+        
