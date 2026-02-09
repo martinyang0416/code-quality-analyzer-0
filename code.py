@@ -1,19 +1,21 @@
-import sys
-import math
-
 def main():
-    data = sys.stdin.read().split()
-    t = int(data[0])
-    index = 1
-    for _ in range(t):
-        x = int(data[index])
-        y = int(data[index + 1])
-        index += 2
-        g = math.gcd(x, y)
-        lcm = x * y // g
-        a = lcm // x
-        b = lcm // y
-        print(a + b - 2)
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        N = int(input[idx])
+        idx += 1
+        K = input[idx].strip()
+        idx += 1
+        mod = 0
+        for c in K:
+            mod = (mod * 10 + int(c)) % N
+        if mod == 0:
+            print(0)
+        else:
+            print(2 * min(mod, N - mod))
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
