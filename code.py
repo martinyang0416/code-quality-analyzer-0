@@ -1,18 +1,19 @@
-def gcd(a, b):
-    while b:
-        a, b = b, a % b
-    return a
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def solve(array):
-    lcm = (array[0] * array[1])//gcd(array[0], array[1])
-    current = lcm
-    for i in range(2, len(array)):
-        running = (current * array[i])//gcd(current, array[i])
-        lcm = gcd(lcm, running)
-        current = gcd(current, array[i])
-    print(lcm)
-    return
-
-n = int(input())
-arr = list(map(int, input().split(' ')))
-solve(arr)
+import builtins
+import re
