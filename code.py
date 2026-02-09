@@ -1,21 +1,25 @@
-import sys
 import bisect
 
 def main():
-    N = int(sys.stdin.readline())
-    a = list(map(int, sys.stdin.readline().split()))
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    A = list(map(int, input[idx:idx+N]))
+    idx += N
+    sorted_S = sorted(A)
     prefix = [0] * (N + 1)
     for i in range(N):
-        prefix[i+1] = prefix[i] + a[i]
+        prefix[i+1] = prefix[i] + sorted_S[i]
     
-    all_subarrays = []
-    for l in range(N):
-        for r in range(l, N):
-            s = prefix[r+1] - prefix[l]
-            all_subarrays.append((s, l, r))
-    
+    T = 0
     for i in range(N):
-        a_list = []
-        b_list = []
-        for s, l, r in all_subarrays:
-            if 
+        T += sorted_S[i] * (i + 1)
+    
+    Q = int(input[idx])
+    idx += 1
+    for _ in range(Q):
+        i = int(input[idx])
+        j = int(input[idx+1])
+ 
