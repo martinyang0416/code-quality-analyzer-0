@@ -1,22 +1,20 @@
 import sys
-import itertools
+from collections import deque
 
 def main():
-    C, N = map(int, sys.stdin.readline().split())
-    masks = []
-    mask_set = set()
-    for _ in range(N):
-        s = sys.stdin.readline().strip()
-        mask = 0
-        for i in range(C):
-            if s[i] == 'G':
-                mask |= 1 << (C - 1 - i)
-        masks.append(mask)
-        mask_set.add(mask)
-    
-    for a in masks:
-        opposite = (~a) & ((1 << C) - 1)
-        if opposite in mask_set:
-            print(C)
-            continue
+    sys.setrecursionlimit(1 << 25)
+    N = int(sys.stdin.readline())
+    s = sys.stdin.readline().strip()
+    cow = [i+1 for i in range(N) if s[i] == '1']
+    T = len(cow)
+    if T == 0:
+        exit()
+
+    edges = [[] for _ in range(N+1)]
+    for _ in range(N-1):
+        a, b = map(int, sys.stdin.readline().split())
+        edges[a].append(b)
+        edges[b].append(a)
+
+    # Find M and M_sum (number of cow components and their total size)
  
