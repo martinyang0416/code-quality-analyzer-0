@@ -1,24 +1,18 @@
-MOD = 998244353
-
-n = int(input())
-primes = list(map(int, input().split()))
-
-from collections import defaultdict
-count = defaultdict(int)
-for p in primes:
-    count[p] += 1
-
-exponents = list(count.values())
-sum_e = sum(exponents)
-s = sum_e // 2
-
-result = 1
-for e in exponents:
-    lower = max(0, s - (sum_e - e))
-    upper = min(e, s)
-    if upper < lower:
-        result = 0
-        break
-    result = (result * (upper - lower + 1)) % MOD
-
-print(result)
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+    c = list(map(int, input().split()))
+    p = [0] * n
+    p[0] = a[0]
+    for i in range(1, n-1):
+        options = [a[i], b[i], c[i]]
+        for opt in options:
+            if opt != p[i-1]:
+                p[i] = opt
+                break
+    # Handle last element
+    i = n-1
+    options = [a[i], b[i], c[i]]
+    candidates = [x for x in options if x != p[i
