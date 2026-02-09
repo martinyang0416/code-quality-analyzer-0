@@ -1,3 +1,3 @@
-Okay, let's see. I need to find a Python solution for this problem where the input is an integer a between 0 and 35, and the output is another integer. The examples given are when input is 3, output is 8, and input 10 gives 1024. Hmm.
+Okay, let's see. The problem is to take an integer a between 0 and 35 and output some number. The examples given are when input is 3, output is 8, and input 10 gives 1024. Hmm. Wait, 3 gives 8... Oh right, 2^3 is 8. And 10 is 2^10 which is 1024. So the problem must be to compute 2 raised to the power of a. But wait, let me think again. The input is a, and output is 2^a?
 
-Wait, let's think about the examples. For input 3, output 8. 2^3 is 8. Oh right, that's straightforward. Then for 10, 2^10 is 1024. So the pattern here seems to be that the output is 2 raised to the power of a. So the problem is probably to compute 2^a. But wait, 
+Yes, that seems to fit the examples. Let me check another case. Like if a is 0, then 2^0 is 1, so output should be 1. If a is 
